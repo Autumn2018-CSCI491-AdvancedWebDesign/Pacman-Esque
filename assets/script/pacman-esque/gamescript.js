@@ -31,9 +31,9 @@ var config = {
 
 var game = new Phaser.Game(config);
 function preload() {
-  this.load.image('tiles', 'assets/tiles.png');
-  this.load.image('car', 'assets/car.png');
-  this.load.tilemapTiledJSON('map', 'assets/maze.json');
+  this.load.image('tiles', 'assets/images/pacman-esque/tiles.png');
+  this.load.image('car', 'assets/images/pacman-esque/car.png');
+  this.load.tilemapTiledJSON('map', 'assets/images/pacman-esque/maze.json');
 }
 
 function create() {
