@@ -42,13 +42,20 @@ var config = {
 }
 
 var game = new Phaser.Game(config);
+
 function preload() {
   this.load.image('tiles', 'assets/tiles.png');
-  this.load.image('car', 'assets/car.png');
+  this.load.image('turtle', 'assets/turtle.png');
+  this.load.image('fish', 'assets/fish.png');
   this.load.tilemapTiledJSON('map', 'assets/maze.json');
 }
 
 function create() {
+  function collectFish (player, fish) {
+      fish.disableBody(true, true);
+  }
+
+
   map = this.make.tilemap({ key: 'map' });
   tileset = map.addTilesetImage('tiles');
   layer = map.createStaticLayer(0, tileset, 0, 0); // layer index, tileset, x, y
@@ -57,14 +64,16 @@ function create() {
   turnPoint = new Phaser.Geom.Point();
 
 
-  // The carrrr
-  car = this.physics.add.sprite(48, 48, 'car');
-  this.physics.add.collider(car, layer);
+  // The turtlerrr
+  turtle = this.physics.add.sprite(48, 48, 'turtle');
+  this.physics.add.collider(turtle, layer);
 
   cursors = this.input.keyboard.createCursorKeys();
-
-
-
+  console.log
+  // The fishhhhes (colectables)
+  // fishes = this.physics.add.group();
+  fishes = this.physics.add.sprite(48, 84, 'fish');
+  this.physics.add.overlap(turtle, fishes, collectFish, null, this);
 
 }
 
@@ -85,27 +94,25 @@ function update() {
 
   this.move = function(direction) {
     var speed = SPEED,
-        transform = 0;
+        transform = 180;
 
     if (direction === Phaser.LEFT || direction === Phaser.UP) {
       speed = -speed
-      transform = 180
+      transform = 0;
     }
 
     if (direction === Phaser.LEFT || direction === Phaser.RIGHT) {
-      car.setVelocityX(speed);
-      car.angle = 90 + transform
-      // car.scaleY = 1
+      turtle.setVelocityX(speed);
+      turtle.angle = -90 + transform;
     }
     else {
-      car.setVelocityY(speed);
-      car.angle = 0 + transform
-      // car.scaleY = transform
+      turtle.setVelocityY(speed);
+      turtle.angle = 0 + transform
     }
 
-    // this.add.tween(this.car).to( { angle: this.getAngle(direction) }, this.turnSpeed, "Linear", true);
+    // this.add.tween(this.turtle).to( { angle: this.getAngle(direction) }, this.turnSpeed, "Linear", true);
 
-    // car.body.velocity.normalize().scale(SPEED);
+    // turtle.body.velocity.normalize().scale(SPEED);
   }
 
   this.checkKeys = function() {
@@ -117,16 +124,16 @@ function update() {
   }
 
   this.turn = function() {
-    var cx = Math.floor(car.x)
-    var cy = Math.floor(car.y)
+    var cx = Math.floor(turtle.x)
+    var cy = Math.floor(turtle.y)
     var THRESHOLD = 3;
 
     if (!Phaser.Math.Fuzzy.Equal(cx, turnPoint.x, THRESHOLD) || !Phaser.Math.Fuzzy.Equal(cy, turnPoint.y, THRESHOLD)) {return false}
 
-    car.x = turnPoint.x;
-    car.y = turnPoint.y;
+    turtle.x = turnPoint.x;
+    turtle.y = turnPoint.y;
 
-    car.body.reset(turnPoint.x, turnPoint.y);
+    turtle.body.reset(turnPoint.x, turnPoint.y);
     this.move(turning)
     turning = Phaser.NONE;
 
@@ -134,9 +141,9 @@ function update() {
 
   }
 
-  // this.physics.add.collider(car, layer);
-  marker.x = Phaser.Math.Snap.Floor(Math.floor(car.x), map.tileWidth) / map.tileWidth;
-  marker.y = Phaser.Math.Snap.Floor(Math.floor(car.y), map.tileHeight) / map.tileHeight;
+  // this.physics.add.collider(turtle, layer);
+  marker.x = Phaser.Math.Snap.Floor(Math.floor(turtle.x), map.tileWidth) / map.tileWidth;
+  marker.y = Phaser.Math.Snap.Floor(Math.floor(turtle.y), map.tileHeight) / map.tileHeight;
 
   //  Update our grid sensors
   directions[Phaser.LEFT] = map.getTileAt( marker.x - 1, marker.y); // Left
