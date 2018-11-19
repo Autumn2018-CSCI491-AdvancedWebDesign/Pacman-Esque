@@ -3,6 +3,8 @@
  * Institution:.. University of Montana
  * Class:........ Advanced Web Design & Programming
  * Date:......... Friday, October 12th, 2018
+ *
+ * Purpose of 'main-menu-desktop.css':
 */
 
 /*............... Cascading Style Sheet for Menu UI ...............*/
@@ -33,31 +35,175 @@ canvas.Canvas
   top:  0px;
 }
 
-div.Menu-Container
-{
-  /* Aligns menu to center of page */
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  div.Menu-Container
+  {
+    /* Positioning: Aligns menu to center of page */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
-  /* Dimensions of the menu-container */
-  width:  300px;
-  height: 621.5px;
-  background-color: #ffffff;
+    /* Dimensions of the menu-container */
+    width:  300px;
+    height: 621.5px;
+    background-color: #ffffff;
 
-  /* Border-Style */
-  border-top-style: solid;
-  border-bottom-style: solid;
-  border-right-style: dashed;
-  border-left-style: dashed;
-  border-width: 3px;
-  border-color: #0000ff; /* Required incase browser does not support animated border */
-  animation:rainbow-border 2s infinite;
+    /* Border-Style */
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-right-style: dashed;
+    border-left-style: dashed;
+    border-width: 3px;
+    border-color: #0000ff; /* Required incase browser does not support animated border */
+    animation:rainbow-border 2s infinite;
 
-  /* Container Shadow */
-  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
-}
+    /* Container Shadow */
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
+  }
+
+    div.Animated-Logo
+    {
+      position: absolute;
+      height: 300px; /* Fill from top of div.Menu-Container to top of div.Menu-Options */
+      width: inherit;
+
+      text-align: center;
+    }
+
+    /* The side navigation menu */
+    div.Menu-Options.--visible
+    {
+      /* Animates transition between --Hidden and --Visible Menu-Option properties */
+      transition-property: width;
+      transition-duration: 0.25s;
+
+      /* Positioning */
+      position: absolute;
+      bottom: 0px;
+
+      /* Dimensions */
+      width: inherit;
+
+      /* Style */
+      overflow: hidden;
+      white-space: nowrap; /* Prevents text-wrapping as buttons shrink */
+      background-color: #ffffff;
+    }
+
+    div.Menu-Options.--hidden
+    {
+      /* Animates transition between --Hidden and --Visible Menu-Option properties */
+      transition-property: width;
+      transition-duration: 0.25s;
+
+      /* Positioning */
+      position: absolute;
+      bottom: 0px;
+
+      /* Dimensions */
+      width: 0px;
+
+      /* Style */
+      overflow: hidden;
+      white-space: nowrap; /* Prevents text-wrapping as buttons shrink */
+      background-color: #ffffff;
+    }
+
+      /* Spaces between buttons */
+      div.Menu-Options p.Spacing
+      {
+        display: block;
+        padding: 8px;
+      }
+
+      /* Sidebar links */
+      a.Button
+      {
+        display: block;
+        color: black;
+        padding: 16px;
+        text-decoration: none;
+
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 3px;
+        border-color: #0000ff; /* Required incase browser does not support animated border */
+        animation: rainbow-border 2s infinite;
+      }
+
+      div.Menu-Options.--hidden a.Button
+      {
+        display: block;
+        color: black;
+        padding: 16px;
+        text-decoration: none;
+
+        border-top: solid;
+        border-bottom: solid;
+        border-right: solid;
+        border-width: 3px;
+        border-color: #0000ff; /* Required incase browser does not support animated border */
+        animation: rainbow-border 2s infinite;
+      }
+
+      a.Button:hover
+      {
+        /* Backups in-case animations are not supported */
+        background-color: #ffffff;
+        border-color: #0000ff;
+
+        /*Animated border and background */
+        animation: teal-buttons 2s infinite, rainbow-border 2s infinite;
+      }
+
+      #lastButton
+      {
+        border-bottom: none;
+      }
+
+      /*--------------------------------------------------------------------------------*/
+      /*                        CSS for highscores.html                                 */
+      /*--------------------------------------------------------------------------------*/
+
+      div.Title-Container.--visible
+      {
+        /* Positioning */
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        /* Dimensions */
+        width: inherit;
+
+        /* Border */
+        border-bottom-style: solid;
+        border-width: 3px;
+        border-color: #0000ff; /* Required incase browser does not support animated border */
+        animation: rainbow-border 2s infinite;
+      }
+
+      div.Title-Container.--visible a.Button
+      {
+        display: inline-block;
+        padding: 16px;
+        border: none;
+      }
+
+      #title
+      {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+
+        cursor: context-menu;
+        animation: none;
+      }
+
+      #backButton
+      {
+        border-right-style: solid;
+      }
+
 
 /* List of Alternating Colors in Border */
 @keyframes rainbow-border
@@ -89,61 +235,4 @@ div.Menu-Container
   80%  {background-color: #d9fffc;}
   90%  {background-color: #f6feff;}
   100% {background-color: #ffffff;}
-}
-
-div.Animated-Logo
-{
-  position: absolute;
-  height: 300px; /* Fill from top of div.Menu-Container to top of div.Menu-Options */
-  width: 100%;
-
-  text-align: center;
-}
-
-/* The side navigation menu */
-div.Menu-Options
-{
-  position: absolute;
-  bottom: 0px;
-
-  width: 300px;
-  background-color: #ffffff;
-  overflow: auto;
-}
-
-/* Spaces between buttons */
-div.Menu-Options p
-{
-  display: block;
-  padding: 8px;
-}
-
-/* Sidebar links */
-div.Menu-Options a
-{
-  display: block;
-  color: black;
-  padding: 16px;
-  text-decoration: none;
-
-  border-top: solid;
-  border-bottom: solid;
-  border-width: 3px;
-  border-color: #0000ff; /* Required incase browser does not support animated border */
-  animation: rainbow-border 2s infinite;
-}
-
-div.Menu-Options a:hover
-{
-  /* Backups in-case animations are not supported */
-  background-color: #ffffff;
-  border-color: #0000ff;
-
-  /*Animated border and background */
-  animation: teal-buttons 2s infinite, rainbow-border 2s infinite;
-}
-
-#lastButton
-{
-  border-bottom: none;
 }

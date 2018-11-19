@@ -1,10 +1,95 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<!--
+Group:........ That Helvetica Group
+Members:...... Scott McKay, Kendyl Freeny, William Cook
+Institution:.. University of Montana
+Class:........ Advanced Web-design & Programming
+Date:......... Saturday, November 17th, 2018
+-->
 
+<!DOCTYPE html>
+<html id="html">
+  <head>
+    <link rel="stylesheet" type="text/css" href="assets/css/main-menu-desktop.css">
+    <meta charset="utf8"/>
+    <title>Pacman-Esque: Main Menu</title>
   </head>
+
+  <!-- Used by "Animated Menu Buttons" and "Animated Background Particles" -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <body>
 
+    <canvas class="Canvas" id="canvas"></canvas>
+
+    <!-- Main Menu -->
+    <div class="Menu-Container" id="menuContainer">
+      <!-- Title: contains back button and menu-header (i.e. settings, highscores, etc.) -->
+      <div class="Title-Container --visible" id="titleContainer">
+         <a href="main-menu.html" class="Button" id="backButton">←</a>
+         <a href="#" class="Button" id="title">Settings</a>
+      </div>
+    </div>
+    <script src="assets/script/pacman-esque/jquery.smoothState.min.js"></script>
   </body>
+
+  <!-- Draggable Menu-Container -->
+  <script>
+    draggableElement(document.getElementById("menuContainer"));
+    function draggableElement(element)
+    {
+      var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      if (document.getElementById(element + "header"))
+      {
+        //If present, the header is where you moe the DIV from.
+        document.getElementById(element.id + "header").onmousedown = dragMouseDown;
+      }
+      else
+      {
+        //Otherwise, move the DIV from anywhere inside DIV
+        element.onmousedown = dragMouseDown;
+      }
+
+      function dragMouseDown(e)
+      {
+        e = e || window.event;
+        e.preventDefault();
+
+        //Get the mouse cursor position at start-up:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+
+        //Call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e)
+      {
+        e = e || window.event;
+        e.preventDefault();
+
+        //Calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+
+        //Set the element's new position:
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+      }
+
+      function closeDragElement()
+      {
+        //Stop moving when mouse button is released:
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+  </script>
+  <!-- /Draggable Menu-Container/ -->
+
+  <!-- Animated Background Particles -->
+  <!-- <script src="assets/script/pacman-esque/menu-desktop-background.js"></script>
+  <!-- /Animated Background Particles/ -->
 </html>
