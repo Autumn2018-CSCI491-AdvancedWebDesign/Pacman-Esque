@@ -21,11 +21,11 @@ function Banner()
 
   if (document.getElementById("html").offsetWidth > 1300)
   {
-    denseness = 20;
+    denseness = 25;
   }
   else
   {
-    denseness = 15;
+    denseness = 20;
   }
 
   //Each particle/icon

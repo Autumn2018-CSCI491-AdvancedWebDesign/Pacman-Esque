@@ -11,28 +11,34 @@
  *  jQuery 1.11.3
  *  assets/script/pacman-esque/jquery.smoothState.min.js
  */
- (function ($)
+ $(function ()
  {
    `use strict`; //Executes JavaScript in strict mode.
 
    var $menuContainer = $("#menuContainer");
    var $menuOptions   = $("#menuOptions");
-   var smoothState;
 
    console.log(window.location.href);
 
-   smoothState = $menuContainer.smoothState
-   ({
+   var options =
+   {
      //Allows smoothState to log errors to console.
      debug: true,
+     prefetch: true,
+     cacheLength: 2,
      //`onStart` will execute JavaScript before element that triggered the load redirects the page.
      onStart:
      {
        duration: 200,
-       render: function ()
+       render: function ($container)
        {
          $menuOptions.removeClass("--visible");
          $menuOptions.addClass("--hidden");
+         $("#menuOptions").removeClass("--visible");
+         $("#menuOptions").addClass("--hidden");
+
+         // Removes cache so animations can happen again
+         smoothState.restartCSSAnimations();
        }
      },
      //`onReady` will execute JavaScript once all animations have terminated and the
@@ -53,7 +59,6 @@
        $("#menuOptions").removeClass("--hidden");
        $("#menuOptions").addClass("--visible");
      }
-   });
-   //smoothState.restartCSSAnimations();
-
+   },
+   smoothState = $menuContainer.smoothState(options).data('smoothState');
  }(jQuery));

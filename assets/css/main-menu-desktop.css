@@ -131,6 +131,7 @@ canvas.Canvas
         animation: rainbow-border 2s infinite;
       }
 
+      /* `--hidden` makes Right border visible */
       div.Menu-Options.--hidden a.Button
       {
         display: block;
@@ -138,6 +139,7 @@ canvas.Canvas
         padding: 16px;
         text-decoration: none;
 
+        /* Border Style */
         border-top: solid;
         border-bottom: solid;
         border-right: solid;
@@ -167,6 +169,10 @@ canvas.Canvas
 
       div.Title-Container.--visible
       {
+        /* Animates transition between --Hidden and --Visible Menu-Option properties */
+        transition-property: width;
+        transition-duration: 0.25s;
+
         /* Positioning */
         position: absolute;
         top: 0px;
@@ -180,9 +186,40 @@ canvas.Canvas
         border-width: 3px;
         border-color: #0000ff; /* Required incase browser does not support animated border */
         animation: rainbow-border 2s infinite;
+
+        /* Style */
+        overflow: hidden;
+        white-space: nowrap; /* Prevents text-wrapping as buttons shrink */
+        background-color: #ffffff;
       }
 
-      div.Title-Container.--visible a.Button
+      div.Title-Container.--hidden
+      {
+        /* Animates transition between --Hidden and --Visible Menu-Option properties */
+        transition-property: width;
+        transition-duration: 0.25s;
+
+        /* Positioning */
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        /* Dimensions */
+        width: 0px;
+
+        /* Border */
+        border-bottom-style: solid;
+        border-width: 3px;
+        border-color: #0000ff; /* Required incase browser does not support animated border */
+        animation: rainbow-border 2s infinite;
+
+        /* Style */
+        overflow: hidden;
+        white-space: nowrap; /* Prevents text-wrapping as buttons shrink */
+        background-color: #ffffff;
+      }
+
+      div.Title-Container a.Button
       {
         display: inline-block;
         padding: 16px;
