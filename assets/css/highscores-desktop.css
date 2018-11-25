@@ -1,0 +1,87 @@
+/* Group:........ That Helvetica Group
+ * Members:...... Scott McKay, Kendyl Freeny, William Cook
+ * Institution:.. University of Montana
+ * Class:........ Advanced Web Design & Programming
+ * Date:......... Saturday, November 24th, 2018
+ *
+ * Purpose of 'main-menu-desktop.css':
+*/
+
+/*............... Cascading Style Sheet for Menu/Settings UI ...............*/
+
+div.Highscores-Container.--faded-in
+{
+  /* Animates transition between --faded-in and --faded-out Settings-Container properties */
+  transition-property: opacity;
+  transition-duration: 0.10s;
+
+  /* Positioning */
+  position: absolute;
+  bottom: 0px;
+
+  /* Dimensions */
+  width: inherit;
+  height: 569px;
+
+  /* Style */
+  opacity: 100;
+  overflow: hidden;
+  white-space: nowrap; /* Prevents text-wrapping as buttons shrink */
+  background-color: #ffffff;
+}
+
+div.Highscores-Container.--faded-out
+{
+  /* Animates transition between --faded-in and --faded-out Settings-Container properties */
+  transition-property: opacity;
+  transition-duration: 0.10s;
+
+  /* Positioning */
+  position: absolute;
+  bottom: 0px;
+
+  /* Dimensions */
+  width: inherit;
+  height: 569px;
+
+  /* Style */
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap; /* Prevents text-wrapping as buttons shrink */
+  background-color: #ffffff;
+}
+
+  table.Highscores-Table
+  {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td
+  {
+    /* Keeps default pointer */
+    cursor: context-menu;
+  }
+
+  th
+  {
+    text-align: center;
+    padding: 8px;
+  }
+
+  td.Username
+  {
+    text-align: left;
+    padding: 10px;
+  }
+
+  td.Score
+  {
+    text-align: right;
+    padding: 8px;
+  }
+
+  tr:nth-child(odd)
+  {
+    background-color: #f2f2f2;
+  }

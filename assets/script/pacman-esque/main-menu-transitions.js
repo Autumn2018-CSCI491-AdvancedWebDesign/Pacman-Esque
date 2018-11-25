@@ -37,6 +37,14 @@
          $("#menuOptions").removeClass("--visible");
          $("#menuOptions").addClass("--hidden");
 
+         //If navigating from settings.html
+         $("#settingsContainer").removeClass("--faded-in");
+         $("#settingsContainer").addClass("--faded-out");
+
+         //If navigating from highscores.html
+         $("#highscoresContainer").removeClass("--faded-in");
+         $("#highscoresContainer").addClass("--faded-out");
+
          // Removes cache so animations can happen again
          smoothState.restartCSSAnimations();
        }
@@ -51,6 +59,14 @@
          $container.html($newContent);  //Switch over to the new HTML page
          $("#menuOptions").removeClass("--visible");
          $("#menuOptions").addClass("--hidden");
+
+         //if navigating to settings.html
+         $("#settingsContainer").removeClass("--faded-in");
+         $("#settingsContainer").addClass("--faded-out");
+
+         //If navigating from highscores.html
+         $("#highscoresContainer").removeClass("--faded-in");
+         $("#highscoresContainer").addClass("--faded-out");
        }
      },
      duration: 0,
@@ -58,6 +74,14 @@
      {
        $("#menuOptions").removeClass("--hidden");
        $("#menuOptions").addClass("--visible");
+
+       //if navigating to settings.html
+       $("#settingsContainer").removeClass("--faded-out");
+       $("#settingsContainer").addClass("--faded-in");
+
+       //If navigating from highscores.html
+       $("#highscoresContainer").removeClass("--faded-out");
+       $("#highscoresContainer").addClass("--faded-in");
      }
    },
    smoothState = $menuContainer.smoothState(options).data('smoothState');

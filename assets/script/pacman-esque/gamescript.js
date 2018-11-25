@@ -12,17 +12,21 @@ var score;
 // Global variables - objects
 var scoreText;
 
-var config = {
+var config =
+{
   type: Phaser.AUTO,
     width: 640,
     height: 480,
-    physics: {
+    physics:
+    {
     default: 'arcade',
-      arcade: {
+      arcade:
+      {
           debug: false
       }
     },
-    scene: {
+    scene:
+    {
         preload: preload,
         create: create,
         update: update
@@ -36,7 +40,8 @@ function preload() {
   this.load.tilemapTiledJSON('map', 'assets/images/pacman-esque/maze.json');
 }
 
-function create() {
+function create()
+{
   const map = this.make.tilemap({ key: 'map' });
   const tileset = map.addTilesetImage('tiles');
   layer = map.createStaticLayer(0, tileset, 0, 0); // layer index, tileset, x, y
@@ -47,13 +52,10 @@ function create() {
   this.physics.add.collider(car, layer);
 
   cursors = this.input.keyboard.createCursorKeys();
-
-
-
-
 }
 
-function update() {
+function update()
+{
   // this.physics.add.collider(car, layer);
   // this.marker.x = this.math.snapToFloor(Math.floor(car.x), this.gridsize) / this.gridsize;
   // this.marker.y = this.math.snapToFloor(Math.floor(car.y), this.gridsize) / this.gridsize;
@@ -68,7 +70,6 @@ function update() {
   // {
   //     this.turn();
   // }
-
 
   if (cursors.left.isDown)
   {
@@ -102,5 +103,4 @@ function update() {
       car.setVelocityY(-SPEED);
   }
   car.body.velocity.normalize().scale(SPEED);
-
 }

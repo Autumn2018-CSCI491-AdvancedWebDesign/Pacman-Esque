@@ -10,6 +10,8 @@ Date:......... Saturday, November 17th, 2018
 <html id="html">
   <head>
     <link rel="stylesheet" type="text/css" href="assets/css/main-menu-desktop.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/settings-desktop.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/highscores-desktop.css">
     <meta charset="utf8"/>
     <title>Pacman-Esque: Main Menu</title>
   </head>
@@ -27,6 +29,27 @@ Date:......... Saturday, November 17th, 2018
       <div class="Title-Container --visible" id="menuOptions">
          <a href="main-menu.html" class="Button" id="backButton">←</a>
          <a href="#" class="Button" id="title">Settings</a>
+      </div>
+      <div class="Settings-Container --faded-in" id="settingsContainer">
+        <table class="Settings-Table">
+          <tr>
+            <th>Master Volume:</th>
+          </tr>
+          <tr>
+            <td><input type="range" min="1" max="100" value="50" class="Volume-Slider" id="volumeSlider"></td>
+          </tr>
+          <tr>
+            <th>Difficulty:</th>
+          </tr>
+          <tr>
+            <th>
+              <button class="button" id="easy">Easy</button>
+              <button class="button" id="medium">Medium</button>
+              <button class="button" id="hard">Hard</button>
+              <button class="button" id="custom">Custom</button>
+            </th>
+          </tr>
+        </table>
       </div>
     </div>
     <script src="assets/script/pacman-esque/jquery.smoothState.min.js"></script>
