@@ -43,7 +43,8 @@ var config =
         preload: preload,
         create: create,
         update: update
-    }
+    },
+    parent: 'game'
 }
 
 var game = new Phaser.Game(config);
