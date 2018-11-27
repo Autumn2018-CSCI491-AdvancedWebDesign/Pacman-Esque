@@ -48,6 +48,17 @@ var config =
 var game = new Phaser.Game(config);
 
 function preload() {
+<<<<<<< HEAD:assets/script/pacman-esque/gamescript.js
+  this.load.image('tiles', 'assets/images/pacman-esque/tiles.png');
+  this.load.image('car', 'assets/images/pacman-esque/car.png');
+  this.load.tilemapTiledJSON('map', 'assets/images/pacman-esque/maze.json');
+}
+
+function create()
+{
+  const map = this.make.tilemap({ key: 'map' });
+  const tileset = map.addTilesetImage('tiles');
+=======
   this.load.image('tiles', 'assets/tiles.png');
   this.load.image('turtle', 'assets/turtle.png');
   this.load.image('fish', 'assets/fish.png');
@@ -62,6 +73,7 @@ function create() {
 
   map = this.make.tilemap({ key: 'map' });
   tileset = map.addTilesetImage('tiles');
+>>>>>>> basic_game:script/gamescript.js
   layer = map.createStaticLayer(0, tileset, 0, 0); // layer index, tileset, x, y
   layer.setCollision(20)
   marker = new Phaser.Geom.Point();
@@ -73,6 +85,15 @@ function create() {
   this.physics.add.collider(turtle, layer);
 
   cursors = this.input.keyboard.createCursorKeys();
+<<<<<<< HEAD:assets/script/pacman-esque/gamescript.js
+}
+
+function update()
+{
+  // this.physics.add.collider(car, layer);
+  // this.marker.x = this.math.snapToFloor(Math.floor(car.x), this.gridsize) / this.gridsize;
+  // this.marker.y = this.math.snapToFloor(Math.floor(car.y), this.gridsize) / this.gridsize;
+=======
   console.log
   // The fishhhhes (colectables)
   // fishes = this.physics.add.group();
@@ -95,11 +116,17 @@ function update() {
       turnPoint.y = (marker.y * map.tileHeight) + (map.tileHeight / 2);
     }
   }
+>>>>>>> basic_game:script/gamescript.js
 
   this.move = function(direction) {
     var speed = SPEED,
         transform = 180;
 
+<<<<<<< HEAD:assets/script/pacman-esque/gamescript.js
+  if (cursors.left.isDown)
+  {
+      car.setVelocityX(-160);
+=======
     if (direction === Phaser.LEFT || direction === Phaser.UP) {
       speed = -speed
       transform = 0;
@@ -115,6 +142,7 @@ function update() {
     }
 
     // this.add.tween(this.turtle).to( { angle: this.getAngle(direction) }, this.turnSpeed, "Linear", true);
+>>>>>>> basic_game:script/gamescript.js
 
     // turtle.body.velocity.normalize().scale(SPEED);
   }
@@ -144,6 +172,9 @@ function update() {
     return true;
 
   }
+<<<<<<< HEAD:assets/script/pacman-esque/gamescript.js
+  car.body.velocity.normalize().scale(SPEED);
+=======
 
   // this.physics.add.collider(turtle, layer);
   marker.x = Phaser.Math.Snap.Floor(Math.floor(turtle.x), map.tileWidth) / map.tileWidth;
@@ -158,4 +189,5 @@ function update() {
   this.checkKeys()
 
   if (turning != Phaser.NONE) {this.turn()}
+>>>>>>> basic_game:script/gamescript.js
 }
