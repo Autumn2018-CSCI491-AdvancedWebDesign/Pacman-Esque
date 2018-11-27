@@ -3,6 +3,7 @@
 // this file will hold info that controls the game engine!
 // Original file created by: Will
 
+
 // Global constant variables
 var SPEED = 300,
     SAFETILE = 1;
@@ -48,10 +49,10 @@ var config =
 var game = new Phaser.Game(config);
 
 function preload() {
-  this.load.image('tiles', 'assets/tiles.png');
-  this.load.image('turtle', 'assets/turtle.png');
-  this.load.image('fish', 'assets/fish.png');
-  this.load.tilemapTiledJSON('map', 'assets/maze.json');
+  this.load.image('tiles', 'assets/images/pacman-esque/tiles.png');
+  this.load.image('turtle', 'assets/images/pacman-esque/turtle.png');
+  this.load.image('fish', 'assets/images/pacman-esque/fish.png');
+  this.load.tilemapTiledJSON('map', 'assets/images/pacman-esque/maze.json');
 }
 
 function create() {
