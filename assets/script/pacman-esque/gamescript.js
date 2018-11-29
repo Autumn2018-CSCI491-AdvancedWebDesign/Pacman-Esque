@@ -14,7 +14,8 @@ var score, map, tileset, marker, turnpoint,
     current = Phaser.UP,
     directions = {},
     normal = [Phaser.NONE, Phaser.LEFT, Phaser.RIGHT, Phaser.UP, Phaser.DOWN]
-    opposites = [ Phaser.NONE, Phaser.RIGHT, Phaser.LEFT, Phaser.DOWN, Phaser.UP ];
+    opposites = [ Phaser.NONE, Phaser.RIGHT, Phaser.LEFT, Phaser.DOWN, Phaser.UP ],
+    currentMap = "map";
 
     directions[Phaser.LEFT] = null;
     directions[Phaser.RIGHT] = null;
@@ -53,7 +54,11 @@ function preload() {
   this.load.image('tiles', 'assets/images/pacman-esque/tiles.png');
   this.load.image('turtle', 'assets/images/pacman-esque/turtle.png');
   this.load.image('fish', 'assets/images/pacman-esque/fish.png');
-  this.load.tilemapTiledJSON('map', 'assets/images/pacman-esque/maze.json');
+  this.load.tilemapTiledJSON('map', 'assets/maps/maze1.json');
+  // this.load.tilemapTiledJSON('map1', 'assets/maps/maze1.json');
+  // this.load.tilemapTiledJSON('map2', 'assets/maps/maze2.json');
+  // this.load.tilemapTiledJSON('map3', 'assets/maps/maze3.json');
+  // this.load.tilemapTiledJSON('map4', 'assets/maps/maze4.json');
 }
 
 function create() {
@@ -62,9 +67,9 @@ function create() {
   }
 
 
-  map = this.make.tilemap({ key: 'map' });
+  map = this.make.tilemap({ key: currentMap });
   tileset = map.addTilesetImage('tiles');
-  layer = map.createStaticLayer(0, tileset, 0, 0); // layer index, tileset, x, y
+  layer = map.createStaticLayer("Tile Layer 1", tileset, 0, 0); // layer index, tileset, x, y
   layer.setCollision(20)
   marker = new Phaser.Geom.Point();
   turnPoint = new Phaser.Geom.Point();
