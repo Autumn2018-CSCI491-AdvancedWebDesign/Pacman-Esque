@@ -36,7 +36,7 @@ var config =
     default: 'arcade',
       arcade:
       {
-          debug: true
+          debug: false
       }
     },
     parent: 'game'
@@ -82,7 +82,12 @@ class StateMain extends Phaser.Scene {
     cursors = this.input.keyboard.createCursorKeys();
 
     fishes = this.physics.add.sprite(48, 84, 'fish');
+
     enemy = this.physics.add.sprite(48, 420, 'creepy');
+    enemy.setVelocityY(-70);
+    enemy.body.bounce.set(1);
+    this.physics.add.collider(enemy, layer);
+
     this.physics.add.overlap(turtle, fishes, collectFish, null, this);
     this.physics.add.overlap(turtle, enemy, playerDeath, null, this);
     scene = this.scene.get("StateMain");
@@ -90,13 +95,12 @@ class StateMain extends Phaser.Scene {
 
    update() {
     this.checkDirection = function(dirIndex) {
-        console.log("Tafsdadsfafsdhis happensasdf");
+
       if (turning === dirIndex || directions[dirIndex] === null || (directions[dirIndex].index !== SAFETILE[0] && directions[dirIndex].index !== SAFETILE[1] && directions[dirIndex].index !== SAFETILE[2])) {return;}
 
       if (current == opposites[dirIndex]) {this.move(dirIndex);}
 
       else {
-        console.log("This happensasdf");
         turning = dirIndex
         turnPoint.x = (marker.x * map.tileWidth) + (map.tileWidth / 2);
         turnPoint.y = (marker.y * map.tileHeight) + (map.tileHeight / 2);
@@ -140,7 +144,6 @@ class StateMain extends Phaser.Scene {
 
       turtle.x = turnPoint.x;
       turtle.y = turnPoint.y;
-      console.log("THIS happens")
 
       turtle.body.reset(turnPoint.x, turnPoint.y);
       this.move(turning)
@@ -177,7 +180,6 @@ class Game extends Phaser.Game {
 
         this.scene.start('StateMain');
 
-        // scene =
     }
 }
 
