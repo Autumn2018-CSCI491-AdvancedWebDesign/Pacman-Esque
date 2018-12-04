@@ -9,7 +9,7 @@ var SPEED = 300,
     SAFETILE = [1,29,43];
 
 // Global variables
-var scene, score, map, tileset, marker, turnPoint, layer, cursors, turtle, fishes,
+var scene, score, map, tileset, marker, turnPoint, layer, cursors, turtle, fishes, enemy,
     turning = Phaser.NONE,
     current = Phaser.UP,
     directions = {},
@@ -47,6 +47,7 @@ class StateMain extends Phaser.Scene {
     this.load.image('tiles', 'assets/images/pacman-esque/tiles.png');
     this.load.image('turtle', 'assets/images/pacman-esque/turtle.png');
     this.load.image('fish', 'assets/images/pacman-esque/fish.png');
+    this.load.image('creepy', 'assets/images/pacman-esque/creepy.png');
     // this.load.tilemapTiledJSON('map', 'assets/maps/maze.json');
     this.load.tilemapTiledJSON('map1', 'assets/maps/maze1.json');
     this.load.tilemapTiledJSON('map2', 'assets/maps/maze2.json');
@@ -59,6 +60,11 @@ class StateMain extends Phaser.Scene {
         fish.disableBody(true, true);
     }
 
+    function playerDeath (player, enemy) {
+      alert("You Is Dead.")
+      scene.scene.restart();
+    }
+
 
     map = this.make.tilemap({ key: currentMap });
     tileset = map.addTilesetImage('tiles');
@@ -68,7 +74,6 @@ class StateMain extends Phaser.Scene {
     marker = new Phaser.Geom.Point();
     turnPoint = new Phaser.Geom.Point();
 
-
     // The turtlerrr
     turtle = null;
     turtle = this.physics.add.sprite(48, 48, 'turtle');
@@ -77,7 +82,9 @@ class StateMain extends Phaser.Scene {
     cursors = this.input.keyboard.createCursorKeys();
 
     fishes = this.physics.add.sprite(48, 84, 'fish');
+    enemy = this.physics.add.sprite(48, 420, 'creepy');
     this.physics.add.overlap(turtle, fishes, collectFish, null, this);
+    this.physics.add.overlap(turtle, enemy, playerDeath, null, this);
     scene = this.scene.get("StateMain");
   }
 
