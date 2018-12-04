@@ -1,0 +1,275 @@
+/* Group:........ That Helvetica Group
+ * Members:...... Scott McKay, Kendyl Freeny, William Cook
+ * Institution:.. University of Montana
+ * Class:........ Advanced Web Design & Programming
+ * Date:......... Sunday, December 2nd, 2018
+ *
+ * Purpose of 'main-menu-desktop.css':
+*/
+
+/*............... Cascading Style Sheet for Menu UI ...............*/
+
+/* Removes margins and padding on all HTML-CSS elements. See: https://bit.ly/2QUMhJP */
+/* This is so that we don't run into any unecessary whitespace during website design*/
+body, html, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+body, html
+{
+  overflow: hidden; /* Prevent browser from displaying scroll-bars */
+  background-color: #f1f1f1;
+
+  /* Force the HTML and Body to fill entire window See: https://bit.ly/2yJ9CXe */
+  width:  100%;
+  height: 100%;
+  /* ------------------------------------------------------------------------- */
+}
+
+canvas.Canvas
+{
+  position: absolute;
+  left: 0px;
+  top:  0px;
+}
+
+  div.Menu-Container
+  {
+    /* Positioning: Aligns menu to center of page */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    /* Dimensions of the menu-container */
+    height: 486px;
+    width:  678px;
+    background-color: #ffffff;
+
+    /* Border-Style */
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-right-style: dashed;
+    border-left-style: dashed;
+    border-width: 3px;
+    border-color: #0000ff; /* Required incase browser does not support animated border */
+    animation:rainbow-border 2s infinite;
+
+    /* Container Shadow */
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
+  }
+
+    div.Animated-Logo
+    {
+      position: absolute;
+      height: 300px; /* Fill from top of div.Menu-Container to top of div.Menu-Options */
+      width: inherit;
+
+      text-align: center;
+    }
+
+    /* The side navigation menu */
+    div.Menu-Options.--visible
+    {
+      /* Animates transition between --Hidden and --Visible Menu-Option properties */
+      transition-property: width;
+      transition-duration: 0.25s;
+
+      /* Positioning */
+      position: absolute;
+      bottom: 0px;
+
+      /* Dimensions */
+      width: inherit;
+
+      /* Style */
+      overflow: hidden;
+      white-space: nowrap; /* Prevents text-wrapping as buttons shrink */
+      background-color: #ffffff;
+    }
+
+    div.Menu-Options.--hidden
+    {
+      /* Animates transition between --Hidden and --Visible Menu-Option properties */
+      transition-property: width;
+      transition-duration: 0.25s;
+
+      /* Positioning */
+      position: absolute;
+      bottom: 0px;
+
+      /* Dimensions */
+      width: 0px;
+
+      /* Style */
+      overflow: hidden;
+      white-space: nowrap; /* Prevents text-wrapping as buttons shrink */
+      background-color: #ffffff;
+    }
+
+      /* Spaces between buttons */
+      div.Menu-Options p.Spacing
+      {
+        display: block;
+        padding: 8px;
+      }
+
+      /* Sidebar links */
+      a.Button
+      {
+        display: block;
+        color: black;
+        padding: 16px;
+        text-decoration: none;
+
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 3px;
+        border-color: #0000ff; /* Required incase browser does not support animated border */
+        animation: rainbow-border 2s infinite;
+      }
+
+      /* `--hidden` makes Right border visible */
+      div.Menu-Options.--hidden a.Button
+      {
+        display: block;
+        color: black;
+        padding: 16px;
+        text-decoration: none;
+
+        /* Border Style */
+        border-top: solid;
+        border-bottom: solid;
+        border-right: solid;
+        border-width: 3px;
+        border-color: #0000ff; /* Required incase browser does not support animated border */
+        animation: rainbow-border 2s infinite;
+      }
+
+      a.Button:hover
+      {
+        /* Backups in-case animations are not supported */
+        background-color: #ffffff;
+        border-color: #0000ff;
+
+        /*Animated border and background */
+        animation: teal-buttons 2s infinite, rainbow-border 2s infinite;
+      }
+
+      #lastButton
+      {
+        border-bottom: none;
+      }
+
+      /*--------------------------------------------------------------------------------*/
+      /*                        CSS for highscores.html                                 */
+      /*--------------------------------------------------------------------------------*/
+
+      div.Title-Container.--visible
+      {
+        /* Animates transition between --Hidden and --Visible Menu-Option properties */
+        transition-property: width;
+        transition-duration: 0.25s;
+
+        /* Positioning */
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        /* Dimensions */
+        width: inherit;
+
+        /* Border */
+        border-bottom-style: solid;
+        border-width: 3px;
+        border-color: #0000ff; /* Required incase browser does not support animated border */
+        animation: rainbow-border 2s infinite;
+
+        /* Style */
+        overflow: hidden;
+        white-space: nowrap; /* Prevents text-wrapping as buttons shrink */
+        background-color: #ffffff;
+      }
+
+      div.Title-Container.--hidden
+      {
+        /* Animates transition between --Hidden and --Visible Menu-Option properties */
+        transition-property: width;
+        transition-duration: 0.25s;
+
+        /* Positioning */
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        /* Dimensions */
+        width: 0px;
+
+        /* Border */
+        border-bottom-style: solid;
+        border-width: 3px;
+        border-color: #0000ff; /* Required incase browser does not support animated border */
+        animation: rainbow-border 2s infinite;
+
+        /* Style */
+        overflow: hidden;
+        white-space: nowrap; /* Prevents text-wrapping as buttons shrink */
+        background-color: #ffffff;
+      }
+
+      div.Title-Container a.Button
+      {
+        display: inline-block;
+        padding: 16px;
+        border: none;
+      }
+
+      #title
+      {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+
+        cursor: context-menu;
+        animation: none;
+      }
+
+      #backButton
+      {
+        border-right-style: solid;
+      }
+
+
+/* List of Alternating Colors in Border */
+@keyframes rainbow-border
+{
+  0%   {border-color: #ff0000;}
+  10%  {border-color: #ff8000;}
+  20%  {border-color: #ffff00;}
+  30%  {border-color: #80ff00;}
+  40%  {border-color: #00ff00;}
+  50%  {border-color: #00ff80;}
+  60%  {border-color: #00ffff;}
+  70%  {border-color: #0080ff;}
+  80%  {border-color: #0000ff;}
+  90%  {border-color: #8000ff;}
+  100% {border-color: #ff0080;}
+}
+
+/* List of Alternating Colors in Selected Button */
+@keyframes teal-buttons
+{
+  0%   {background-color: #ffffff;}
+  10%  {background-color: #f6feff;}
+  30%  {background-color: #d9fffc;}
+  20%  {background-color: #98f3ff;}
+  40%  {background-color: #7cebff;}
+  50%  {background-color: #53e5ff;}
+  60%  {background-color: #7cebff;}
+  70%  {background-color: #98f3ff;}
+  80%  {background-color: #d9fffc;}
+  90%  {background-color: #f6feff;}
+  100% {background-color: #ffffff;}
+}

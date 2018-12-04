@@ -20,19 +20,17 @@ Date:......... Friday, October 12th, 2018
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <body>
-
     <canvas class="Canvas" id="canvas"></canvas>
 
     <!-- Main Menu -->
     <div class="Menu-Container" id="menuContainer">
-      <div class="Animated-Logo">
-        &lt Insert Logo Here &gt
-        &nbsp;
-        <!-- Will contain animated logo -->
+      <div class="Animated-Logo-Container --faded-in" id="animatedLogoContainer">
+        <!-- Menu Logo -->
+        <img src="./assets/images/pacman-esque/new_piskel.png" id="animatedLogo" alt="Could not load logo">
       </div>
       <!-- Menu Options -->
       <div class="Menu-Options --visible" id="menuOptions">
-        <a href="game-page.html" class="Button">Start Game</a>
+        <a class="Button" onclick="window.location.href = 'game-page.html'">Start Game</a>
         <p class="Spacing">&nbsp;</p>
         <a href="highscores.html" class="Button">Highscores</a>
         <p class="Spacing">&nbsp;</p>

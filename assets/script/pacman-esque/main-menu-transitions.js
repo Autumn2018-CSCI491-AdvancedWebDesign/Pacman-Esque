@@ -18,8 +18,6 @@
    var $menuContainer = $("#menuContainer");
    var $menuOptions   = $("#menuOptions");
 
-   console.log(window.location.href);
-
    var options =
    {
      //Allows smoothState to log errors to console.
@@ -32,16 +30,20 @@
        duration: 200,
        render: function ($container)
        {
+         //If leaving main-menu.html
          $menuOptions.removeClass("--visible");
          $menuOptions.addClass("--hidden");
+         $("#animatedLogoContainer").removeClass("--faded-in");
+         $("#animatedLogoContainer").addClass("--faded-out");
+
          $("#menuOptions").removeClass("--visible");
          $("#menuOptions").addClass("--hidden");
 
-         //If navigating from settings.html
+         //If leaving settings.html
          $("#settingsContainer").removeClass("--faded-in");
          $("#settingsContainer").addClass("--faded-out");
 
-         //If navigating from highscores.html
+         //If leaving highscores.html
          $("#highscoresContainer").removeClass("--faded-in");
          $("#highscoresContainer").addClass("--faded-out");
 
@@ -56,15 +58,19 @@
        duration: 200,
        render: function ($container, $newContent)
        {
-         $container.html($newContent);  //Switch over to the new HTML page
+         //Switch over to the new HTML page
+         $container.html($newContent);
+         //If navigating main-menu.html
          $("#menuOptions").removeClass("--visible");
          $("#menuOptions").addClass("--hidden");
+         $("#animatedLogoContainer").removeClass("--faded-in");
+         $("#animatedLogoContainer").addClass("--faded-out");
 
          //if navigating to settings.html
          $("#settingsContainer").removeClass("--faded-in");
          $("#settingsContainer").addClass("--faded-out");
 
-         //If navigating from highscores.html
+         //If navigating to highscores.html
          $("#highscoresContainer").removeClass("--faded-in");
          $("#highscoresContainer").addClass("--faded-out");
        }
@@ -72,14 +78,17 @@
      duration: 0,
      onAfter: function($container, $newContent)
      {
+       //if navigating to main-menu.html
        $("#menuOptions").removeClass("--hidden");
        $("#menuOptions").addClass("--visible");
+       $("#animatedLogoContainer").removeClass("--faded-out");
+       $("#animatedLogoContainer").addClass("--faded-in");
 
        //if navigating to settings.html
        $("#settingsContainer").removeClass("--faded-out");
        $("#settingsContainer").addClass("--faded-in");
 
-       //If navigating from highscores.html
+       //If navigating to highscores.html
        $("#highscoresContainer").removeClass("--faded-out");
        $("#highscoresContainer").addClass("--faded-in");
      }
