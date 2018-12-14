@@ -119,7 +119,8 @@ var currentInd = 0
 var totalmapdots = [(totalmap.length - totalmap.reduce(add)), (totalmap.length - totalmap2.reduce(add)), (totalmap.length - totalmap3.reduce(add)), (totalmap.length - totalmap4.reduce(add))]
 var curTotalmapdots = totalmapdots[currentInd]
 // Global variables
-var scene, score, map, tileset, marker, turnPoint, layer, cursors, turtle, fishes, fishes2, fishes3, enemy, enemy2, enemy3, enemy4, enemy5, enemy6, dots,
+var scene, scoreText, map, tileset, marker, turnPoint, layer, cursors, turtle, fishes, fishes2, fishes3, enemy, enemy2, enemy3, enemy4, enemy5, enemy6, dots,
+  score = 0,
   turning = Phaser.NONE,
   current = Phaser.UP,
   directions = {},
@@ -133,9 +134,10 @@ directions[Phaser.UP] = null;
 directions[Phaser.DOWN] = null;
 directions[Phaser.NONE] = null;
 
-// Global variables - objects
-var scoreText;
+localStorage.setItem("score", score);
 
+
+// Global variables - objects
 var config = {
   type: Phaser.AUTO,
   width: 672,
@@ -171,11 +173,13 @@ class StateMain extends Phaser.Scene {
     function collectDots(player, dot) {
       dot.disableBody(true, true);
       curTotalmapdots -= 1;
+      score += 1;
+      updateScore(score);
     }
 
     function playerDeath(player, enemy) {
-      alert("You Is Dead.");
-      changeLevel(currentInd);
+      
+      changeLevel();
     }
 
     var enemiesPowerupsDict = {
@@ -495,10 +499,14 @@ class Game extends Phaser.Game {
 var game = new Game(config);
 
 function changeLevel(newMapInd = null) {
-  if (newMapInd == null) {
+  if (newMapInd == null) { // We didn't change a map, we died or restarted
     newMapInd = currentInd
+    score = parseInt(localStorage.getItem("score"));
   }
-  else if (newMapInd >= levelDict.length) {newMapInd = 0}
+  else if (newMapInd >= levelDict.length) {
+    localStorage.setItem("score", score);
+    // User inputs a high score here
+  }
   turning = Phaser.NONE;
   currentInd = newMapInd
   currentMap = levelDict[newMapInd];
@@ -507,8 +515,13 @@ function changeLevel(newMapInd = null) {
   xcount = 0;
   ycount = 0;
   extraspeed = 0;
+  localStorage.setItem("score", score);
   scene.scene.stop();
   scene.scene.start();
+}
+
+function updateScore(score) {
+  document.getElementById("scoreCounter").innerHTML = "Score: " + score;
 }
 
 function randomDirection(obj1, obj2) {
