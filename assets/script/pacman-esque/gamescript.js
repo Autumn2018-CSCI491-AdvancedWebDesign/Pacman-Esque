@@ -3,107 +3,109 @@
 // this file will hold info that controls the game engine!
 // Original file created by: Will
 
+// For reduce()
+const add = (a, b) =>
+  a + b
 
 // Global constant variables
-var SPEED = 300,
+var SPEED = 200,
   SAFETILE = [1, 29, 43];
-map1x = [48,84,120,145,176,212,240,273,309,338,374,408,442,472,500,532,568,595,628];
-map1y = [43,79, 115, 150, 180, 205, 240, 268, 300, 336, 370, 400, 432];
+map1x = [48, 84, 120, 145, 176, 212, 240, 273, 309, 338, 374, 408, 442, 472, 500, 532, 568, 595, 628];
+map1y = [43, 79, 115, 150, 180, 205, 240, 268, 300, 336, 370, 400, 432];
 totalmap = [
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
- 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0,
- 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
- 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
+  0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0,
+  0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+  0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ];
-totalmapdots1=197;
 totalmap2 = [
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1,1,0,1,1,0,1,1,0,1,1,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1,1,0,1,1,0,1,1,0,1,1,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1,1,0,1,1,0,1,1,0,1,1,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1,1,0,1,1,0,1,1,0,1,1,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1,1,0,1,1,0,1,1,0,1,1,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1,1,0,1,1,0,1,1,0,1,1,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1,1,0,1,1,0,1,1,0,1,1,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1,1,0,1,1,0,1,1,0,1,1,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0, 
-0,1,1,0,1,1,0,1,1,0,1,1,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ];
-totalmap2dots=193;
-totalmap3=[
-0,0,0,1,0,0,0,0,0,1,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,1,0,0,0,0,0,1,0,0,0,
-0,0,0,1,0,0,0,0,0,1,0,0,0,
-1,0,1,1,0,0,0,0,0,1,1,0,1,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,1,0,1,1,0,1,1,0,1,0,0,
-0,1,0,0,1,0,0,0,1,0,0,1,0,
-0,0,1,0,1,1,0,1,1,0,0,1,0,
-0,0,0,0,0,0,0,0,0,0,0,1,0,
-0,0,1,0,1,1,0,1,1,0,0,1,0,
-0,1,0,0,1,0,0,0,1,0,0,1,0,
-0,0,1,0,1,1,0,1,1,0,1,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-1,0,1,1,0,0,0,0,0,1,1,0,1,
-0,0,0,1,0,0,0,0,0,1,0,0,0,
-0,0,0,1,0,0,0,0,0,1,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,1,0,0,0,0,0,1,0,0,0,
+totalmap3 = [
+  0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+  0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+  1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0,
+  0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0,
+  0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+  0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0,
+  0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0,
+  0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1,
+  0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+  0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
 ];
-totalmap3dots=190;
-totalmap4=[
-0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,1,0,1,0,0,0,0,0,0,
-0,0,0,0,1,0,1,0,0,0,0,0,0,
-0,1,1,1,1,0,1,1,1,1,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,1,0,
-0,1,1,0,0,0,0,0,0,0,0,1,0,
-0,1,1,0,0,0,0,0,0,1,1,1,0,
-0,0,0,0,1,0,0,1,0,0,0,1,0,
-0,0,0,0,1,0,0,1,0,0,0,1,0,
-0,0,1,1,1,0,0,1,1,1,0,0,0,
-0,0,1,1,1,0,0,1,1,1,0,0,0,
-0,0,0,0,1,0,0,1,0,0,0,1,0,
-0,1,1,0,1,0,0,1,0,0,0,1,0,
-0,1,1,0,0,0,0,0,0,1,1,1,0,
-0,0,0,0,0,0,0,0,0,0,0,1,0,
-0,1,1,1,1,0,1,1,1,1,0,1,0,
-0,0,0,0,1,0,1,0,0,0,0,0,0,
-0,0,0,0,1,0,1,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0
+totalmap4 = [
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0,
+  0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+  0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+  0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0,
+  0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0,
+  0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0,
+  0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0,
+  0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0,
+  0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0,
+  0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0,
+  0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+  0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0,
+  0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ];
-totalmap4dots=181;
 tilecount = 0;
 xcount = 0;
 ycount = 0;
 extraspeed = 0;
-lives=3;
-score=0;
 
+var levelDict = ["map1", "map2", "map3", "map4"]
+var totalmapDict = [totalmap, totalmap2,totalmap3,totalmap4]
+var currentInd = 0
+var totalmapdots = [totalmap.reduce(add), totalmap2.reduce(add), totalmap3.reduce(add), totalmap4.reduce(add)]
+var curTotalmapdots = totalmapdots[currentInd]
 // Global variables
 var scene, score, map, tileset, marker, turnPoint, layer, cursors, turtle, fishes, enemy, enemy2, enemy3, enemy4, dots,
   turning = Phaser.NONE,
@@ -111,7 +113,7 @@ var scene, score, map, tileset, marker, turnPoint, layer, cursors, turtle, fishe
   directions = {},
   normal = [Phaser.NONE, Phaser.LEFT, Phaser.RIGHT, Phaser.UP, Phaser.DOWN]
 opposites = [Phaser.NONE, Phaser.RIGHT, Phaser.LEFT, Phaser.DOWN, Phaser.UP],
-  currentMap = "map1";
+  currentMap = levelDict[currentInd];
 
 directions[Phaser.LEFT] = null;
 directions[Phaser.RIGHT] = null;
@@ -129,7 +131,7 @@ var config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: false
+      debug: true
     }
   },
   parent: 'game'
@@ -150,78 +152,18 @@ class StateMain extends Phaser.Scene {
 
   create() {
     function collectFish(player, fish) {
-      extraspeed += 1000;
+      extraspeed += SPEED/2;
       fish.disableBody(true, true);
     }
 
     function collectDots(player, dot) {
       dot.disableBody(true, true);
-	  score=score+10;
-	  if(currentMap=="map1"){
-		totalmapdots1=totalmapdots1-1;	
-		if (totalmapdots1==0){
-			alert("Congratz! You made it to the next level!");	
-			currentMap="map2";
-			turtle.body.reset(48, 48);
-			this.scene.start('map2');
-		}
-		
-	  }
-	  else if (currentMap=="map2"){
-		totalmap2dots=totalmap2dots-1;  
-		if (totalmapdots2==0){
-			alert("Congratz! You made it to the next level!");	
-			currentMap="map3";
-			turtle.body.reset(48, 48);
-		}
-	  }
-	  else if(currentMap=="map3"){
-		totalmap3dots=totalmap3dots-1;
-		if (totalmapdots3==0){
-			alert("Congratz! You made it to the next level!");
-			currentMap="map4"; 	
-			turtle.body.reset(48, 48);
-		}
-	  }
-	  else if(currentMap=="map4"){
-		totalmap4dots=totalmap4dots-1; 
-		if (totalmapdots4==0){
-			alert("Congratz! You =Win!");	
-		}		
-	  }
+      curTotalmapdots -= 1;
     }
 
     function playerDeath(player, enemy) {
-		alert("You Is Dead.");
-      //changeLevel(currentMap);
-		lives=lives-1;
-		if (lives >0){
-			turtle.body.reset(48, 48);
-			enemy.body.reset(48, 420);
-			enemy2.body.reset(480, 48);
-			enemy3.body.reset(176, 48);
-			enemy4.body.reset(176, 240);
-			
-			enemy.setVelocityY(-70);
-			enemy.body.bounce.set(1);
-			this.physics.add.collider(enemy, layer);
-
-			enemy2.setVelocityX(-70);
-			enemy2.body.bounce.set(1);
-			this.physics.add.collider(enemy2, layer);
-
-			enemy3.setVelocityY(70);
-			enemy3.body.bounce.set(1);
-			this.physics.add.collider(enemy3, layer);
-
-			enemy4.setVelocityX(70);
-			enemy4.body.bounce.set(1);
-			this.physics.add.collider(enemy4, layer);
-		}
-		else{
-			alert("GAME OVER! Click refresh to try again!");
-			alert("Score: "+score);
-		}
+      alert("You Is Dead.");
+      changeLevel(currentInd);
     }
 
 
@@ -244,8 +186,7 @@ class StateMain extends Phaser.Scene {
 
     fishes = this.physics.add.sprite(48, 84, 'fish');
 
-	/*
-    //enemy = this.physics.add.sprite(48, 420, 'creepy');
+    enemy = this.physics.add.sprite(48, 420, 'creepy');
     enemy.setVelocityY(-70);
     enemy.body.bounce.set(1);
     this.physics.add.collider(enemy, layer);
@@ -265,7 +206,6 @@ class StateMain extends Phaser.Scene {
     enemy4.setVelocityX(70);
     enemy4.body.bounce.set(1);
     this.physics.add.collider(enemy4, layer);
-	*/
 
     this.physics.add.overlap(turtle, fishes, collectFish, null, this);
     this.physics.add.overlap(turtle, enemy, playerDeath, null, this);
@@ -273,40 +213,35 @@ class StateMain extends Phaser.Scene {
     this.physics.add.overlap(turtle, enemy3, playerDeath, null, this);
     this.physics.add.overlap(turtle, enemy4, playerDeath, null, this);
 
-    for (var i = 0; i <totalmap.length; i++) {
-		if (currentMap=="map1"){
-			var tile = totalmap[i];
-		}
-		else if (currentMap=="map2"){
-			var tile = totalmap2[i];
-		}
-		else if (currentMap=="map3"){
-			var tile = totalmap3[i];
-		}
-		else if (currentMap=="map4"){
-			var tile = totalmap4[i];
-		}
-		if (i==0){
-			ycount=0;
-		}else if (i!=0 && tilecount <= 12) {
-		}else if (i!=0 && tilecount >12){
-			xcount=xcount+1;
-			ycount=0;
-			tilecount=0;
-		}
-		var x = map1x[xcount];
-		var y = map1y[ycount];
-		if (tile == 0) {
-			dots = this.physics.add.sprite(x, y, 'dot');
-			ycount = ycount + 1;
-		} else if (tile==1) {
-			ycount = ycount + 1;
-		}
-		if(i==0){
-			ycount=ycount+1;	
-		}
-		this.physics.add.overlap(turtle, dots, collectDots, null, this);
-		tilecount = tilecount + 1;
+    for (var i = 0; i < totalmap.length; i++) {
+      var tile = totalmap[i];
+      if (i == 0) {
+        //window.alert(0);
+        ycount = 0;
+      } else if (i != 0 && tilecount <= 12) {
+        //window.alert(1)
+      } else if (i != 0 && tilecount > 12) {
+        xcount = xcount + 1;
+        ycount = 0;
+        tilecount = 0;
+        //window.alert(2);
+      }
+      var x = map1x[xcount];
+      var y = map1y[ycount];
+      //window.alert(x);
+      //window.alert(y);
+      if (tile == 0) {
+        dots = this.physics.add.sprite(x, y, 'dot');
+        ycount = ycount + 1;
+      } else if (tile == 1) {
+        ycount = ycount + 1;
+      }
+      if (i == 0) {
+        ycount = ycount + 1;
+      }
+      //window.alert(5)
+      this.physics.add.overlap(turtle, dots, collectDots, null, this);
+      tilecount = tilecount + 1;
     }
     scene = this.scene.get("StateMain");
   }
@@ -355,17 +290,21 @@ class StateMain extends Phaser.Scene {
         this.checkDirection(Phaser.UP)
       } else if (cursors.down.isDown) {
         this.checkDirection(Phaser.DOWN)
-      } else {
-        turning = Phaser.NONE
+      // } else {
+      //   // turning = Phaser.NONE
+      //   console.log("NOT TODAY")
       }
     }
 
     this.turn = function() {
       var cx = Math.floor(turtle.x)
       var cy = Math.floor(turtle.y)
-      var THRESHOLD = 3;
+      var THRESHOLD = 2;
 
       if (!Phaser.Math.Fuzzy.Equal(cx, turnPoint.x, THRESHOLD) || !Phaser.Math.Fuzzy.Equal(cy, turnPoint.y, THRESHOLD)) {
+        console.log(turning)
+        console.log(turnPoint.x)
+        console.log(turnPoint.y)
         return false
       }
 
@@ -377,7 +316,10 @@ class StateMain extends Phaser.Scene {
       turning = Phaser.NONE;
 
       return true;
+    }
 
+    this.checkWorking = function() {
+      if (curTotalmapdots < 1) {changeLevel(currentInd+1)}
     }
 
     // this.physics.add.collider(turtle, layer);
@@ -400,9 +342,7 @@ class StateMain extends Phaser.Scene {
 
 
 class Game extends Phaser.Game {
-
   constructor() {
-
     super(config);
 
     this.scene.add('StateMain', StateMain, false);
@@ -414,10 +354,16 @@ class Game extends Phaser.Game {
 
 var game = new Game(config);
 
-function changeLevel(newMap = "map2") {
+function changeLevel(newMapInd = null) {
+  if (newMapInd == null) {
+    newMapInd = currentInd
+  }
+  else if (newMapInd == levelDict.length) {alert("You won. Good work.");}
   turning = Phaser.NONE;
-  currentMap = newMap;
-  tilecount = 1;
+  currentInd = newMapInd
+  currentMap = levelDict[newMapInd];
+  curTotalmapdots = totalmapdots[newMapInd];
+  tilecount = 0;
   xcount = 0;
   ycount = 0;
   extraspeed = 0;
