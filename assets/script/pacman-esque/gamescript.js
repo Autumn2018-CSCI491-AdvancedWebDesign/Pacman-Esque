@@ -104,7 +104,7 @@ extraspeed = 0;
 var levelDict = ["map1", "map2", "map3", "map4"]
 var totalmapDict = [totalmap, totalmap2,totalmap3,totalmap4]
 var currentInd = 0
-var totalmapdots = [totalmap.reduce(add), totalmap2.reduce(add), totalmap3.reduce(add), totalmap4.reduce(add)]
+var totalmapdots = [(totalmap.length - totalmap.reduce(add)), (totalmap.length - totalmap2.reduce(add)), (totalmap.length - totalmap3.reduce(add)), (totalmap.length - totalmap4.reduce(add))]
 var curTotalmapdots = totalmapdots[currentInd]
 // Global variables
 var scene, score, map, tileset, marker, turnPoint, layer, cursors, turtle, fishes, enemy, enemy2, enemy3, enemy4, dots,
@@ -213,8 +213,8 @@ class StateMain extends Phaser.Scene {
     this.physics.add.overlap(turtle, enemy3, playerDeath, null, this);
     this.physics.add.overlap(turtle, enemy4, playerDeath, null, this);
 
-    for (var i = 0; i < totalmap.length; i++) {
-      var tile = totalmap[i];
+    for (var i = 0; i < totalmapDict[currentInd].length; i++) {
+      var tile = totalmapDict[currentInd][i];
       if (i == 0) {
         //window.alert(0);
         ycount = 0;
@@ -318,7 +318,7 @@ class StateMain extends Phaser.Scene {
       return true;
     }
 
-    this.checkWorking = function() {
+    this.checkFinishedLevel = function() {
       if (curTotalmapdots < 1) {changeLevel(currentInd+1)}
     }
 
@@ -333,6 +333,7 @@ class StateMain extends Phaser.Scene {
     directions[Phaser.DOWN] = map.getTileAt(marker.x, marker.y + 1); // Bottom
 
     this.checkKeys();
+    this.checkFinishedLevel();
 
     if (turning != Phaser.NONE) {
       this.turn()
@@ -358,7 +359,7 @@ function changeLevel(newMapInd = null) {
   if (newMapInd == null) {
     newMapInd = currentInd
   }
-  else if (newMapInd == levelDict.length) {alert("You won. Good work.");}
+  else if (newMapInd >= levelDict.length) {newMapInd = 0}
   turning = Phaser.NONE;
   currentInd = newMapInd
   currentMap = levelDict[newMapInd];
