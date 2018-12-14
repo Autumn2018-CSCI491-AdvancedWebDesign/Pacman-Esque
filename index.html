@@ -3,12 +3,12 @@ Group:........ That Helvetica Group
 Members:...... Scott McKay, Kendyl Freeny, William Cook
 Institution:.. University of Montana
 Class:........ Advanced Web-design & Programming
-Date:......... Saturday, November 17th, 2018
+Date:......... Friday, October 12th, 2018
 -->
 
 <!DOCTYPE html>
 <html id="html">
-  <head>
+  <head id="mainMenuHead">
     <link rel="stylesheet" type="text/css" href="assets/css/main-menu-desktop.css">
     <link rel="stylesheet" type="text/css" href="assets/css/settings-desktop.css">
     <link rel="stylesheet" type="text/css" href="assets/css/highscores-desktop.css">
@@ -20,86 +20,25 @@ Date:......... Saturday, November 17th, 2018
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <body>
-
     <canvas class="Canvas" id="canvas"></canvas>
 
     <!-- Main Menu -->
     <div class="Menu-Container" id="menuContainer">
-      <!-- Title: contains back button and menu-header (i.e. settings, highscores, etc.) -->
-      <div class="Title-Container --visible" id="menuOptions">
-         <a href="index.html" class="Button" id="backButton">←</a>
-         <a href="#" class="Button" id="title">Highscores</a>
+      <div class="Animated-Logo-Container --faded-in" id="animatedLogoContainer">
+        <!-- Menu Logo -->
+        <img src="./assets/images/pacman-esque/new_piskel.png" id="animatedLogo" alt="Could not load logo">
       </div>
-      <div class="Highscores-Container --faded-in" id="highscoresContainer">
-        <table class="Highscores-Table">
-          <tr>
-            <td class="Username">Evilscaught</td>
-            <td class="Score">100 Points</td>
-          </tr>
-          <tr>
-            <td class="Username">Thalonkoju</td>
-            <td class="Score">98 Points</td>
-          </tr>
-          <tr>
-            <td class="Username">Zarar</td>
-            <td class="Score">70 Points</td>
-          </tr>
-          <tr>
-            <td class="Username">SonicSNES</td>
-            <td class="Score">50 Points</td>
-          </tr>
-          <tr>
-            <td class="Username">Herobrine</td>
-            <td class="Score">44 Points</td>
-          </tr>
-          <tr>
-            <td class="Username">Notch</td>
-            <td class="Score">30 Points</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-        </table>
+      <!-- Menu Options -->
+      <div class="Menu-Options --visible" id="menuOptions">
+        <a class="Button" onclick="window.location.href = 'game-page.html'">Start Game</a>
+        <p class="Spacing">&nbsp;</p>
+        <a href="highscores.html" class="Button">Highscores</a>
+        <p class="Spacing">&nbsp;</p>
+        <a href="settings.html" class="Button">Settings</a>
+        <p class="Spacing">&nbsp;</p>
+        <a href="about.html" id="lastButton" class="Button">About</a>
       </div>
     </div>
-
     <script src="assets/script/pacman-esque/jquery.smoothState.min.js"></script>
     <script src="assets/script/pacman-esque/main-menu-transitions.js"></script>
   </body>

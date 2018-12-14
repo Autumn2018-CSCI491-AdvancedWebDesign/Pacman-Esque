@@ -199,3 +199,10 @@ function()
 }
 )();
 /* /Dynamically Resizeable Canvas/ */
+
+
+// William functions
+function setDifficulty(d, name) {
+  localStorage.setItem("difficulty", d);
+  document.getElementById("info").innerHTML = "Difficulty set to " + name
+}

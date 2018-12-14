@@ -10,6 +10,8 @@ const add = (a, b) =>
 // Global constant variables
 var SPEED = 200,
   SAFETILE = [1, 29, 43, 99];
+
+// Map building variables
 map1x = [48, 84, 120, 145, 176, 212, 240, 273, 309, 338, 374, 408, 442, 472, 500, 532, 568, 595, 628];
 map1y = [43, 79, 115, 150, 180, 205, 240, 268, 300, 336, 370, 400, 432];
 totalmap = [
@@ -101,6 +103,16 @@ xcount = 0;
 ycount = 0;
 extraspeed = 0;
 
+// This is determined by game difficulty
+
+var enemySpeed;
+if (localStorage.getItem("difficulty") === null) {
+  enemySpeed = 70 // Normal
+}
+else {
+  enemySpeed = localStorage.getItem("difficulty") * 35;
+}
+
 var levelDict = ["map1", "map2", "map3", "map4"]
 var totalmapDict = [totalmap, totalmap2,totalmap3,totalmap4]
 var currentInd = 0
@@ -171,22 +183,22 @@ class StateMain extends Phaser.Scene {
         fishes = that.physics.add.sprite(48, 84, 'fish');
 
         enemy = that.physics.add.sprite(48, 420, 'creepy', randomDirection);
-        enemy.setVelocityY(-70);
+        enemy.setVelocityY(-enemySpeed);
         enemy.body.bounce.set(1);
         that.physics.add.collider(enemy, layer);
 
         enemy2 = that.physics.add.sprite(480, 48, 'creepy');
-        enemy2.setVelocityX(-70);
+        enemy2.setVelocityX(-enemySpeed);
         enemy2.body.bounce.set(1);
         that.physics.add.collider(enemy2, layer);
 
         enemy3 = that.physics.add.sprite(176, 48, 'creepy', randomDirection);
-        enemy3.setVelocityY(70);
+        enemy3.setVelocityY(enemySpeed);
         enemy3.body.bounce.set(1);
         that.physics.add.collider(enemy3, layer);
 
         enemy4 = that.physics.add.sprite(176, 240, 'creepy');
-        enemy4.setVelocityX(70);
+        enemy4.setVelocityX(enemySpeed);
         enemy4.body.bounce.set(1);
         that.physics.add.collider(enemy4, layer);
 
@@ -201,28 +213,28 @@ class StateMain extends Phaser.Scene {
         fishes2 = that.physics.add.sprite(480, 435, 'fish');
 
         enemy = that.physics.add.sprite(450, 435, 'creepy');
-        enemy.setVelocityX(-70);
+        enemy.setVelocityX(-enemySpeed);
         enemy.body.bounce.set(1);
         that.physics.add.collider(enemy, layer, randomDirection);
 
 
         enemy2 = that.physics.add.sprite(480, 48, 'creepy');
-        enemy2.setVelocityX(-70);
+        enemy2.setVelocityX(-enemySpeed);
         enemy2.body.bounce.set(1);
         that.physics.add.collider(enemy2, layer);
 
         enemy3 = that.physics.add.sprite(176, 48, 'creepy');
-        enemy3.setVelocityY(70);
+        enemy3.setVelocityY(enemySpeed);
         enemy3.body.bounce.set(1);
         that.physics.add.collider(enemy3, layer);
 
         enemy4 = that.physics.add.sprite(176, 240, 'creepy');
-        enemy4.setVelocityX(70);
+        enemy4.setVelocityX(enemySpeed);
         enemy4.body.bounce.set(1);
         that.physics.add.collider(enemy4, layer, randomDirection);
 
         enemy5 = that.physics.add.sprite(176, 240, 'creepy');
-        enemy5.setVelocityX(-70);
+        enemy5.setVelocityX(-enemySpeed);
         enemy5.body.bounce.set(1);
         that.physics.add.collider(enemy5, layer, randomDirection);
 
@@ -239,33 +251,33 @@ class StateMain extends Phaser.Scene {
         fishes2 = that.physics.add.sprite(430, 435, 'fish');
 
         enemy = that.physics.add.sprite(450, 435, 'creepy');
-        enemy.setVelocityX(-70);
+        enemy.setVelocityX(-enemySpeed);
         enemy.body.bounce.set(1);
         that.physics.add.collider(enemy, layer, randomDirection);
 
 
         enemy2 = that.physics.add.sprite(480, 144, 'creepy');
-        enemy2.setVelocityX(-70);
+        enemy2.setVelocityX(-enemySpeed);
         enemy2.body.bounce.set(1);
         that.physics.add.collider(enemy2, layer);
 
         enemy3 = that.physics.add.sprite(208, 48, 'creepy');
-        enemy3.setVelocityY(70);
+        enemy3.setVelocityY(enemySpeed);
         enemy3.body.bounce.set(1);
         that.physics.add.collider(enemy3, layer);
 
         enemy4 = that.physics.add.sprite(176, 240, 'creepy');
-        enemy4.setVelocityX(70);
+        enemy4.setVelocityX(enemySpeed);
         enemy4.body.bounce.set(1);
         that.physics.add.collider(enemy4, layer, randomDirection);
 
         enemy5 = that.physics.add.sprite(176, 240, 'creepy');
-        enemy5.setVelocityX(-70);
+        enemy5.setVelocityX(-enemySpeed);
         enemy5.body.bounce.set(1);
         that.physics.add.collider(enemy5, layer, randomDirection);
 
         enemy2 = that.physics.add.sprite(480, 48, 'creepy');
-        enemy2.setVelocityX(-70);
+        enemy2.setVelocityX(-enemySpeed);
         enemy2.body.bounce.set(1);
         that.physics.add.collider(enemy2, layer);
 
@@ -281,33 +293,33 @@ class StateMain extends Phaser.Scene {
               fishes2 = that.physics.add.sprite(430, 435, 'fish');
 
               enemy = that.physics.add.sprite(450, 435, 'creepy');
-              enemy.setVelocityX(-70);
+              enemy.setVelocityX(-enemySpeed);
               enemy.body.bounce.set(1);
               that.physics.add.collider(enemy, layer, randomDirection);
 
 
               enemy2 = that.physics.add.sprite(480, 144, 'creepy');
-              enemy2.setVelocityX(-70);
+              enemy2.setVelocityX(-enemySpeed);
               enemy2.body.bounce.set(1);
               that.physics.add.collider(enemy2, layer);
 
-              enemy3 = that.physics.add.sprite(208, 48, 'creepy');
-              enemy3.setVelocityY(70);
+              enemy3 = that.physics.add.sprite(208, 148, 'creepy');
+              enemy3.setVelocityY(enemySpeed);
               enemy3.body.bounce.set(1);
               that.physics.add.collider(enemy3, layer);
 
               enemy4 = that.physics.add.sprite(176, 240, 'creepy');
-              enemy4.setVelocityX(70);
+              enemy4.setVelocityX(enemySpeed);
               enemy4.body.bounce.set(1);
               that.physics.add.collider(enemy4, layer, randomDirection);
 
               enemy5 = that.physics.add.sprite(176, 240, 'creepy');
-              enemy5.setVelocityX(-70);
+              enemy5.setVelocityX(-enemySpeed);
               enemy5.body.bounce.set(1);
               that.physics.add.collider(enemy5, layer, randomDirection);
 
               enemy2 = that.physics.add.sprite(480, 48, 'creepy');
-              enemy2.setVelocityX(-70);
+              enemy2.setVelocityX(-enemySpeed);
               enemy2.body.bounce.set(1);
               that.physics.add.collider(enemy2, layer);
 

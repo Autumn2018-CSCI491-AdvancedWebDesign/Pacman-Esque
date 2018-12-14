@@ -27,7 +27,7 @@ Date:......... Saturday, November 17th, 2018
     <div class="Menu-Container" id="menuContainer">
       <!-- Title: contains back button and menu-header (i.e. settings, highscores, etc.) -->
       <div class="Title-Container --visible" id="menuOptions">
-         <a href="main-menu.html" class="Button" id="backButton">←</a>
+         <a href="index.html" class="Button" id="backButton">←</a>
          <a href="#" class="Button" id="title">Settings</a>
       </div>
       <div class="Settings-Container --faded-in" id="settingsContainer">
@@ -43,10 +43,11 @@ Date:......... Saturday, November 17th, 2018
           </tr>
           <tr>
             <th>
-              <button class="button" id="easy">Easy</button>
-              <button class="button" id="medium">Medium</button>
-              <button class="button" id="hard">Hard</button>
-              <button class="button" id="custom">Custom</button>
+              <button class="button" id="easy" onclick="setDifficulty(1, 'Easy');">Easy</button>
+              <button class="button" id="medium" onclick="setDifficulty(2, 'Medium');">Medium</button>
+              <button class="button" id="hard" onclick="setDifficulty(3, 'Hard');">Hard</button>
+              <button class="button" id="custom" onclick="setDifficulty(7, 'Evil');">Evil</button>
+              <div id="info"></div>
             </th>
           </tr>
         </table>
