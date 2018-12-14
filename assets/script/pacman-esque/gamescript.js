@@ -11,9 +11,9 @@ map1x = [48,84,120,145,176,212,240,273,309,338,374,408,442,472,500,532,568,595,6
 map1y = [43,79, 115, 150, 180, 205, 240, 268, 300, 336, 370, 400, 432];
 totalmap = [
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0,
+ 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0,
+ 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -27,7 +27,7 @@ totalmap = [
  0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
  0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0,
  0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
- 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0,
+ 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ];
 totalmapdots1=197;
@@ -48,7 +48,7 @@ totalmap2 = [
 0,1,1,0,1,1,0,1,1,0,1,1,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,1,1,0,1,1,0,1,1,0,1,1,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0, 
 0,1,1,0,1,1,0,1,1,0,1,1,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,
 ];
@@ -101,6 +101,8 @@ tilecount = 0;
 xcount = 0;
 ycount = 0;
 extraspeed = 0;
+lives=3;
+score=0;
 
 // Global variables
 var scene, score, map, tileset, marker, turnPoint, layer, cursors, turtle, fishes, enemy, enemy2, enemy3, enemy4, dots,
@@ -108,7 +110,7 @@ var scene, score, map, tileset, marker, turnPoint, layer, cursors, turtle, fishe
   current = Phaser.UP,
   directions = {},
   normal = [Phaser.NONE, Phaser.LEFT, Phaser.RIGHT, Phaser.UP, Phaser.DOWN]
-  opposites = [Phaser.NONE, Phaser.RIGHT, Phaser.LEFT, Phaser.DOWN, Phaser.UP],
+opposites = [Phaser.NONE, Phaser.RIGHT, Phaser.LEFT, Phaser.DOWN, Phaser.UP],
   currentMap = "map1";
 
 directions[Phaser.LEFT] = null;
@@ -120,26 +122,21 @@ directions[Phaser.NONE] = null;
 // Global variables - objects
 var scoreText;
 
-var config =
-{
+var config = {
   type: Phaser.AUTO,
   width: 672,
   height: 480,
-  physics:
-  {
+  physics: {
     default: 'arcade',
-    arcade:
-    {
+    arcade: {
       debug: false
     }
   },
   parent: 'game'
 }
 
-class StateMain extends Phaser.Scene
-{
-  preload()
-  {
+class StateMain extends Phaser.Scene {
+  preload() {
     this.load.image('tiles', 'assets/images/pacman-esque/tiles.png');
     this.load.image('turtle', 'assets/images/pacman-esque/turtle.png');
     this.load.image('fish', 'assets/images/pacman-esque/fish.png');
@@ -151,29 +148,85 @@ class StateMain extends Phaser.Scene
     this.load.tilemapTiledJSON('map4', 'assets/maps/maze4.json');
   }
 
-  create()
-  {
-    function collectFish(player, fish)
-    {
+  create() {
+    function collectFish(player, fish) {
       extraspeed += 1000;
       fish.disableBody(true, true);
     }
 
-    function collectDots(player, dot)
-     {
+    function collectDots(player, dot) {
       dot.disableBody(true, true);
+	  score=score+10;
+	  if(currentMap=="map1"){
+		totalmapdots1=totalmapdots1-1;	
+		if (totalmapdots1==0){
+			alert("Congratz! You made it to the next level!");	
+			currentMap="map2";
+			turtle.body.reset(48, 48);
+			this.scene.start('map2');
+		}
+		
+	  }
+	  else if (currentMap=="map2"){
+		totalmap2dots=totalmap2dots-1;  
+		if (totalmapdots2==0){
+			alert("Congratz! You made it to the next level!");	
+			currentMap="map3";
+			turtle.body.reset(48, 48);
+		}
+	  }
+	  else if(currentMap=="map3"){
+		totalmap3dots=totalmap3dots-1;
+		if (totalmapdots3==0){
+			alert("Congratz! You made it to the next level!");
+			currentMap="map4"; 	
+			turtle.body.reset(48, 48);
+		}
+	  }
+	  else if(currentMap=="map4"){
+		totalmap4dots=totalmap4dots-1; 
+		if (totalmapdots4==0){
+			alert("Congratz! You =Win!");	
+		}		
+	  }
     }
 
-    function playerDeath(player, enemy)
-    {
-      alert("You Is Dead.");
-      changeLevel(currentMap);
+    function playerDeath(player, enemy) {
+		alert("You Is Dead.");
+      //changeLevel(currentMap);
+		lives=lives-1;
+		if (lives >0){
+			turtle.body.reset(48, 48);
+			enemy.body.reset(48, 420);
+			enemy2.body.reset(480, 48);
+			enemy3.body.reset(176, 48);
+			enemy4.body.reset(176, 240);
+			
+			enemy.setVelocityY(-70);
+			enemy.body.bounce.set(1);
+			this.physics.add.collider(enemy, layer);
+
+			enemy2.setVelocityX(-70);
+			enemy2.body.bounce.set(1);
+			this.physics.add.collider(enemy2, layer);
+
+			enemy3.setVelocityY(70);
+			enemy3.body.bounce.set(1);
+			this.physics.add.collider(enemy3, layer);
+
+			enemy4.setVelocityX(70);
+			enemy4.body.bounce.set(1);
+			this.physics.add.collider(enemy4, layer);
+		}
+		else{
+			alert("GAME OVER! Click refresh to try again!");
+			alert("Score: "+score);
+		}
     }
 
 
-    map = this.make.tilemap
-    ({
-        key: currentMap
+    map = this.make.tilemap({
+      key: currentMap
     });
     tileset = map.addTilesetImage('tiles');
     layer = map.createStaticLayer("Tile Layer 1", tileset, 0, 0); // layer index, tileset, x, y
@@ -191,7 +244,8 @@ class StateMain extends Phaser.Scene
 
     fishes = this.physics.add.sprite(48, 84, 'fish');
 
-    enemy = this.physics.add.sprite(48, 420, 'creepy');
+	/*
+    //enemy = this.physics.add.sprite(48, 420, 'creepy');
     enemy.setVelocityY(-70);
     enemy.body.bounce.set(1);
     this.physics.add.collider(enemy, layer);
@@ -211,6 +265,7 @@ class StateMain extends Phaser.Scene
     enemy4.setVelocityX(70);
     enemy4.body.bounce.set(1);
     this.physics.add.collider(enemy4, layer);
+	*/
 
     this.physics.add.overlap(turtle, fishes, collectFish, null, this);
     this.physics.add.overlap(turtle, enemy, playerDeath, null, this);
@@ -218,127 +273,99 @@ class StateMain extends Phaser.Scene
     this.physics.add.overlap(turtle, enemy3, playerDeath, null, this);
     this.physics.add.overlap(turtle, enemy4, playerDeath, null, this);
 
-    for (var i = 0; i <totalmap.length; i++)
-    {
-  		var tile = totalmap4[i];
-  		if (i==0)
-      {
-  			//window.alert(0);
-  			ycount=0;
-  		}
-      else if (i!=0 && tilecount <= 12)
-      {
-  			//window.alert(1)
-  		}
-      else if (i!=0 && tilecount >12)
-      {
-  			xcount=xcount+1;
-  			ycount=0;
-  			tilecount=0;
-  			//window.alert(2);
-  		}
-  		var x = map1x[xcount];
-  		var y = map1y[ycount];
-  		//window.alert(x);
-  		//window.alert(y);
-  		if (tile == 0)
-      {
-  			dots = this.physics.add.sprite(x, y, 'dot');
-  			ycount = ycount + 1;
-  		}
-      else if (tile == 1)
-      {
-  			ycount = ycount + 1;
-  		}
-  		if(i == 0)
-      {
-  			ycount=ycount+1;
-  		}
-  		//window.alert(5)
-  		this.physics.add.overlap(turtle, dots, collectDots, null, this);
-  		tilecount = tilecount + 1;
+    for (var i = 0; i <totalmap.length; i++) {
+		if (currentMap=="map1"){
+			var tile = totalmap[i];
+		}
+		else if (currentMap=="map2"){
+			var tile = totalmap2[i];
+		}
+		else if (currentMap=="map3"){
+			var tile = totalmap3[i];
+		}
+		else if (currentMap=="map4"){
+			var tile = totalmap4[i];
+		}
+		if (i==0){
+			ycount=0;
+		}else if (i!=0 && tilecount <= 12) {
+		}else if (i!=0 && tilecount >12){
+			xcount=xcount+1;
+			ycount=0;
+			tilecount=0;
+		}
+		var x = map1x[xcount];
+		var y = map1y[ycount];
+		if (tile == 0) {
+			dots = this.physics.add.sprite(x, y, 'dot');
+			ycount = ycount + 1;
+		} else if (tile==1) {
+			ycount = ycount + 1;
+		}
+		if(i==0){
+			ycount=ycount+1;	
+		}
+		this.physics.add.overlap(turtle, dots, collectDots, null, this);
+		tilecount = tilecount + 1;
     }
     scene = this.scene.get("StateMain");
   }
 
-  update()
-  {
-    this.checkDirection = function(dirIndex)
-    {
+  update() {
+    this.checkDirection = function(dirIndex) {
 
-      if (turning === dirIndex || directions[dirIndex] === null || (directions[dirIndex].index !== SAFETILE[0] && directions[dirIndex].index !== SAFETILE[1] && directions[dirIndex].index !== SAFETILE[2]))
-      {
+      if (turning === dirIndex || directions[dirIndex] === null || (directions[dirIndex].index !== SAFETILE[0] && directions[dirIndex].index !== SAFETILE[1] && directions[dirIndex].index !== SAFETILE[2])) {
         return;
       }
 
-      if (current == opposites[dirIndex])
-      {
+      if (current == opposites[dirIndex]) {
         this.move(dirIndex);
-      }
-      else
-      {
+      } else {
         turning = dirIndex
         turnPoint.x = (marker.x * map.tileWidth) + (map.tileWidth / 2);
         turnPoint.y = (marker.y * map.tileHeight) + (map.tileHeight / 2);
       }
     }
 
-    this.move = function(direction)
-    {
+    this.move = function(direction) {
       var speed = SPEED + extraspeed,
         transform = 180;
 
-      if (direction === Phaser.LEFT || direction === Phaser.UP)
-       {
+      if (direction === Phaser.LEFT || direction === Phaser.UP) {
         speed = -speed
         transform = 0;
       }
 
-      if (direction === Phaser.LEFT || direction === Phaser.RIGHT)
-      {
+      if (direction === Phaser.LEFT || direction === Phaser.RIGHT) {
         turtle.setVelocityX(speed);
         turtle.angle = -90 + transform;
-      }
-      else
-      {
+      } else {
         turtle.setVelocityY(speed);
         turtle.angle = 0 + transform
       }
 
     }
 
-    this.checkKeys = function()
-    {
-      if (cursors.left.isDown)
-      {
+    this.checkKeys = function() {
+      if (cursors.left.isDown) {
         this.checkDirection(Phaser.LEFT)
-      }
-      else if (cursors.right.isDown)
-      {
+      } else if (cursors.right.isDown) {
         this.checkDirection(Phaser.RIGHT)
-      }
-      else if (cursors.up.isDown)
-      {
+      } else if (cursors.up.isDown) {
         this.checkDirection(Phaser.UP)
-      }
-      else if (cursors.down.isDown)
-      {
+      } else if (cursors.down.isDown) {
         this.checkDirection(Phaser.DOWN)
-      }
-      else
-      {
+      } else {
         turning = Phaser.NONE
       }
     }
 
-    this.turn = function()
-    {
+    this.turn = function() {
       var cx = Math.floor(turtle.x)
       var cy = Math.floor(turtle.y)
       var THRESHOLD = 3;
 
-      if (!Phaser.Math.Fuzzy.Equal(cx, turnPoint.x, THRESHOLD) || !Phaser.Math.Fuzzy.Equal(cy, turnPoint.y, THRESHOLD))
-      {
+      if (!Phaser.Math.Fuzzy.Equal(cx, turnPoint.x, THRESHOLD) || !Phaser.Math.Fuzzy.Equal(cy, turnPoint.y, THRESHOLD)) {
         return false
       }
 
@@ -350,6 +377,7 @@ class StateMain extends Phaser.Scene
       turning = Phaser.NONE;
 
       return true;
+
     }
 
     // this.physics.add.collider(turtle, layer);
@@ -364,18 +392,17 @@ class StateMain extends Phaser.Scene
 
     this.checkKeys();
 
-    if (turning != Phaser.NONE)
-    {
+    if (turning != Phaser.NONE) {
       this.turn()
     }
   }
 }
 
 
-class Game extends Phaser.Game
-{
-  constructor()
-  {
+class Game extends Phaser.Game {
+
+  constructor() {
+
     super(config);
 
     this.scene.add('StateMain', StateMain, false);
@@ -387,8 +414,7 @@ class Game extends Phaser.Game
 
 var game = new Game(config);
 
-function changeLevel(newMap = "map1")
-{
+function changeLevel(newMap = "map2") {
   turning = Phaser.NONE;
   currentMap = newMap;
   tilecount = 1;
