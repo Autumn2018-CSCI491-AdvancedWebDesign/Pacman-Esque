@@ -131,7 +131,7 @@ var config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true
+      debug: false
     }
   },
   parent: 'game'
@@ -299,12 +299,12 @@ class StateMain extends Phaser.Scene {
     this.turn = function() {
       var cx = Math.floor(turtle.x)
       var cy = Math.floor(turtle.y)
-      var THRESHOLD = 2;
+      var THRESHOLD = 3;
 
-      if (!Phaser.Math.Fuzzy.Equal(cx, turnPoint.x, THRESHOLD) || !Phaser.Math.Fuzzy.Equal(cy, turnPoint.y, THRESHOLD)) {
-        console.log(turning)
-        console.log(turnPoint.x)
-        console.log(turnPoint.y)
+      if ((!Phaser.Math.Fuzzy.Equal(cx, turnPoint.x, THRESHOLD) || !Phaser.Math.Fuzzy.Equal(cy, turnPoint.y, THRESHOLD))  && (directions[turning].index !== SAFETILE[0] && directions[turning].index !== SAFETILE[1] && directions[turning].index !== SAFETILE[2])) {
+        // console.log(turning)
+        // console.log(turnPoint.x)
+        // console.log(turnPoint.y)
         return false
       }
 
