@@ -277,7 +277,7 @@ class StateMain extends Phaser.Scene {
         that.physics.add.overlap(turtle, enemy4, playerDeath, null, this);
         that.physics.add.overlap(turtle, enemy5, playerDeath, null, this);},
       3: function(that, turtle, layer) {
-              fishes = that.physics.add.sprite(240, 84, 'fish');
+              fishes = that.physics.add.sprite(240, 48, 'fish');
               fishes2 = that.physics.add.sprite(430, 435, 'fish');
 
               enemy = that.physics.add.sprite(450, 435, 'creepy');
