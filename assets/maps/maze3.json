@@ -22,7 +22,7 @@
  "tilesets":[
         {
          "columns":14,
-         "firstgid":141,
+         "firstgid":1,
          "image":"tiles.png",
          "imageheight":320,
          "imagewidth":448,

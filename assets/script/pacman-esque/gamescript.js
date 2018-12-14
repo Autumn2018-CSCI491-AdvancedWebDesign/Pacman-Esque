@@ -9,7 +9,7 @@ const add = (a, b) =>
 
 // Global constant variables
 var SPEED = 200,
-  SAFETILE = [1, 29, 43];
+  SAFETILE = [1, 29, 43, 99];
 map1x = [48, 84, 120, 145, 176, 212, 240, 273, 309, 338, 374, 408, 442, 472, 500, 532, 568, 595, 628];
 map1y = [43, 79, 115, 150, 180, 205, 240, 268, 300, 336, 370, 400, 432];
 totalmap = [
@@ -107,7 +107,7 @@ var currentInd = 0
 var totalmapdots = [(totalmap.length - totalmap.reduce(add)), (totalmap.length - totalmap2.reduce(add)), (totalmap.length - totalmap3.reduce(add)), (totalmap.length - totalmap4.reduce(add))]
 var curTotalmapdots = totalmapdots[currentInd]
 // Global variables
-var scene, score, map, tileset, marker, turnPoint, layer, cursors, turtle, fishes, enemy, enemy2, enemy3, enemy4, dots,
+var scene, score, map, tileset, marker, turnPoint, layer, cursors, turtle, fishes, fishes2, fishes3, enemy, enemy2, enemy3, enemy4, enemy5, enemy6, dots,
   turning = Phaser.NONE,
   current = Phaser.UP,
   directions = {},
@@ -166,6 +166,160 @@ class StateMain extends Phaser.Scene {
       changeLevel(currentInd);
     }
 
+    var enemiesPowerupsDict = {
+      0: function(that, turtle, layer) {
+        fishes = that.physics.add.sprite(48, 84, 'fish');
+
+        enemy = that.physics.add.sprite(48, 420, 'creepy', randomDirection);
+        enemy.setVelocityY(-70);
+        enemy.body.bounce.set(1);
+        that.physics.add.collider(enemy, layer);
+
+        enemy2 = that.physics.add.sprite(480, 48, 'creepy');
+        enemy2.setVelocityX(-70);
+        enemy2.body.bounce.set(1);
+        that.physics.add.collider(enemy2, layer);
+
+        enemy3 = that.physics.add.sprite(176, 48, 'creepy', randomDirection);
+        enemy3.setVelocityY(70);
+        enemy3.body.bounce.set(1);
+        that.physics.add.collider(enemy3, layer);
+
+        enemy4 = that.physics.add.sprite(176, 240, 'creepy');
+        enemy4.setVelocityX(70);
+        enemy4.body.bounce.set(1);
+        that.physics.add.collider(enemy4, layer);
+
+        that.physics.add.overlap(turtle, fishes, collectFish, null, this);
+        that.physics.add.overlap(turtle, enemy, playerDeath, null, this);
+        that.physics.add.overlap(turtle, enemy2, playerDeath, null, this);
+        that.physics.add.overlap(turtle, enemy3, playerDeath, null, this);
+        that.physics.add.overlap(turtle, enemy4, playerDeath, null, this);
+      },
+      1: function(that, turtle, layer) {
+        fishes = that.physics.add.sprite(48, 84, 'fish');
+        fishes2 = that.physics.add.sprite(480, 435, 'fish');
+
+        enemy = that.physics.add.sprite(450, 435, 'creepy');
+        enemy.setVelocityX(-70);
+        enemy.body.bounce.set(1);
+        that.physics.add.collider(enemy, layer, randomDirection);
+
+
+        enemy2 = that.physics.add.sprite(480, 48, 'creepy');
+        enemy2.setVelocityX(-70);
+        enemy2.body.bounce.set(1);
+        that.physics.add.collider(enemy2, layer);
+
+        enemy3 = that.physics.add.sprite(176, 48, 'creepy');
+        enemy3.setVelocityY(70);
+        enemy3.body.bounce.set(1);
+        that.physics.add.collider(enemy3, layer);
+
+        enemy4 = that.physics.add.sprite(176, 240, 'creepy');
+        enemy4.setVelocityX(70);
+        enemy4.body.bounce.set(1);
+        that.physics.add.collider(enemy4, layer, randomDirection);
+
+        enemy5 = that.physics.add.sprite(176, 240, 'creepy');
+        enemy5.setVelocityX(-70);
+        enemy5.body.bounce.set(1);
+        that.physics.add.collider(enemy5, layer, randomDirection);
+
+        that.physics.add.overlap(turtle, fishes, collectFish, null, this);
+        that.physics.add.overlap(turtle, fishes2, collectFish, null, this);
+        that.physics.add.overlap(turtle, enemy, playerDeath, null, this);
+        that.physics.add.overlap(turtle, enemy2, playerDeath, null, this);
+        that.physics.add.overlap(turtle, enemy3, playerDeath, null, this);
+        that.physics.add.overlap(turtle, enemy4, playerDeath, null, this);
+        that.physics.add.overlap(turtle, enemy5, playerDeath, null, this);
+      },
+      2: function(that, turtle, layer) {
+        fishes = that.physics.add.sprite(240, 84, 'fish');
+        fishes2 = that.physics.add.sprite(430, 435, 'fish');
+
+        enemy = that.physics.add.sprite(450, 435, 'creepy');
+        enemy.setVelocityX(-70);
+        enemy.body.bounce.set(1);
+        that.physics.add.collider(enemy, layer, randomDirection);
+
+
+        enemy2 = that.physics.add.sprite(480, 144, 'creepy');
+        enemy2.setVelocityX(-70);
+        enemy2.body.bounce.set(1);
+        that.physics.add.collider(enemy2, layer);
+
+        enemy3 = that.physics.add.sprite(208, 48, 'creepy');
+        enemy3.setVelocityY(70);
+        enemy3.body.bounce.set(1);
+        that.physics.add.collider(enemy3, layer);
+
+        enemy4 = that.physics.add.sprite(176, 240, 'creepy');
+        enemy4.setVelocityX(70);
+        enemy4.body.bounce.set(1);
+        that.physics.add.collider(enemy4, layer, randomDirection);
+
+        enemy5 = that.physics.add.sprite(176, 240, 'creepy');
+        enemy5.setVelocityX(-70);
+        enemy5.body.bounce.set(1);
+        that.physics.add.collider(enemy5, layer, randomDirection);
+
+        enemy2 = that.physics.add.sprite(480, 48, 'creepy');
+        enemy2.setVelocityX(-70);
+        enemy2.body.bounce.set(1);
+        that.physics.add.collider(enemy2, layer);
+
+        that.physics.add.overlap(turtle, fishes, collectFish, null, this);
+        that.physics.add.overlap(turtle, fishes2, collectFish, null, this);
+        that.physics.add.overlap(turtle, enemy, playerDeath, null, this);
+        that.physics.add.overlap(turtle, enemy2, playerDeath, null, this);
+        that.physics.add.overlap(turtle, enemy3, playerDeath, null, this);
+        that.physics.add.overlap(turtle, enemy4, playerDeath, null, this);
+        that.physics.add.overlap(turtle, enemy5, playerDeath, null, this);},
+      3: function(that, turtle, layer) {
+              fishes = that.physics.add.sprite(240, 84, 'fish');
+              fishes2 = that.physics.add.sprite(430, 435, 'fish');
+
+              enemy = that.physics.add.sprite(450, 435, 'creepy');
+              enemy.setVelocityX(-70);
+              enemy.body.bounce.set(1);
+              that.physics.add.collider(enemy, layer, randomDirection);
+
+
+              enemy2 = that.physics.add.sprite(480, 144, 'creepy');
+              enemy2.setVelocityX(-70);
+              enemy2.body.bounce.set(1);
+              that.physics.add.collider(enemy2, layer);
+
+              enemy3 = that.physics.add.sprite(208, 48, 'creepy');
+              enemy3.setVelocityY(70);
+              enemy3.body.bounce.set(1);
+              that.physics.add.collider(enemy3, layer);
+
+              enemy4 = that.physics.add.sprite(176, 240, 'creepy');
+              enemy4.setVelocityX(70);
+              enemy4.body.bounce.set(1);
+              that.physics.add.collider(enemy4, layer, randomDirection);
+
+              enemy5 = that.physics.add.sprite(176, 240, 'creepy');
+              enemy5.setVelocityX(-70);
+              enemy5.body.bounce.set(1);
+              that.physics.add.collider(enemy5, layer, randomDirection);
+
+              enemy2 = that.physics.add.sprite(480, 48, 'creepy');
+              enemy2.setVelocityX(-70);
+              enemy2.body.bounce.set(1);
+              that.physics.add.collider(enemy2, layer);
+
+              that.physics.add.overlap(turtle, fishes, collectFish, null, this);
+              that.physics.add.overlap(turtle, fishes2, collectFish, null, this);
+              that.physics.add.overlap(turtle, enemy, playerDeath, null, this);
+              that.physics.add.overlap(turtle, enemy2, playerDeath, null, this);
+              that.physics.add.overlap(turtle, enemy3, playerDeath, null, this);
+              that.physics.add.overlap(turtle, enemy4, playerDeath, null, this);
+              that.physics.add.overlap(turtle, enemy5, playerDeath, null, this);}
+    }
+
 
     map = this.make.tilemap({
       key: currentMap
@@ -182,36 +336,9 @@ class StateMain extends Phaser.Scene {
     turtle = this.physics.add.sprite(48, 48, 'turtle');
     this.physics.add.collider(turtle, layer);
 
+    enemiesPowerupsDict[currentInd](this, turtle, layer)
+
     cursors = this.input.keyboard.createCursorKeys();
-
-    fishes = this.physics.add.sprite(48, 84, 'fish');
-
-    enemy = this.physics.add.sprite(48, 420, 'creepy');
-    enemy.setVelocityY(-70);
-    enemy.body.bounce.set(1);
-    this.physics.add.collider(enemy, layer);
-
-
-    enemy2 = this.physics.add.sprite(480, 48, 'creepy');
-    enemy2.setVelocityX(-70);
-    enemy2.body.bounce.set(1);
-    this.physics.add.collider(enemy2, layer);
-
-    enemy3 = this.physics.add.sprite(176, 48, 'creepy');
-    enemy3.setVelocityY(70);
-    enemy3.body.bounce.set(1);
-    this.physics.add.collider(enemy3, layer);
-
-    enemy4 = this.physics.add.sprite(176, 240, 'creepy');
-    enemy4.setVelocityX(70);
-    enemy4.body.bounce.set(1);
-    this.physics.add.collider(enemy4, layer);
-
-    this.physics.add.overlap(turtle, fishes, collectFish, null, this);
-    this.physics.add.overlap(turtle, enemy, playerDeath, null, this);
-    this.physics.add.overlap(turtle, enemy2, playerDeath, null, this);
-    this.physics.add.overlap(turtle, enemy3, playerDeath, null, this);
-    this.physics.add.overlap(turtle, enemy4, playerDeath, null, this);
 
     for (var i = 0; i < totalmapDict[currentInd].length; i++) {
       var tile = totalmapDict[currentInd][i];
@@ -249,7 +376,7 @@ class StateMain extends Phaser.Scene {
   update() {
     this.checkDirection = function(dirIndex) {
 
-      if (turning === dirIndex || directions[dirIndex] === null || (directions[dirIndex].index !== SAFETILE[0] && directions[dirIndex].index !== SAFETILE[1] && directions[dirIndex].index !== SAFETILE[2])) {
+      if (turning === dirIndex || directions[dirIndex] === null || (directions[dirIndex].index !== SAFETILE[0] && directions[dirIndex].index !== SAFETILE[1] && directions[dirIndex].index !== SAFETILE[2] && directions[dirIndex].index !== SAFETILE[3])) {
         return;
       }
 
@@ -301,7 +428,7 @@ class StateMain extends Phaser.Scene {
       var cy = Math.floor(turtle.y)
       var THRESHOLD = 3;
 
-      if ((!Phaser.Math.Fuzzy.Equal(cx, turnPoint.x, THRESHOLD) || !Phaser.Math.Fuzzy.Equal(cy, turnPoint.y, THRESHOLD))  && (directions[turning].index !== SAFETILE[0] && directions[turning].index !== SAFETILE[1] && directions[turning].index !== SAFETILE[2])) {
+      if ((!Phaser.Math.Fuzzy.Equal(cx, turnPoint.x, THRESHOLD) || !Phaser.Math.Fuzzy.Equal(cy, turnPoint.y, THRESHOLD))  && (directions[turning].index !== SAFETILE[0] && directions[turning].index !== SAFETILE[1] && directions[turning].index !== SAFETILE[2] && directions[turning].index !== SAFETILE[3])) {
         // console.log(turning)
         // console.log(turnPoint.x)
         // console.log(turnPoint.y)
@@ -370,4 +497,25 @@ function changeLevel(newMapInd = null) {
   extraspeed = 0;
   scene.scene.stop();
   scene.scene.start();
+}
+
+function randomDirection(obj1, obj2) {
+  rand = Math.random()
+  if (rand > .7) {
+    if (Math.random() > .85) {
+      sign = 1
+    }
+    else {
+      sign = -1
+    }
+    // Makes ob1 go in a random direction
+    if (obj1.body.velocity.x != 0) {
+      obj1.setVelocityY(obj1.body.velocity.x * sign)
+      obj1.setVelocityX(0);
+    }
+    else {
+      obj1.setVelocityX(obj1.body.velocity.y * sign)
+      obj1.setVelocityY(0);
+    }
+  }
 }
